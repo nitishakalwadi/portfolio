@@ -1,23 +1,128 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+        
+            @keyframes blink {
+              to {
+                visibility: hidden;
+              }
+            }
+            @-webkit-keyframes blink {
+              to {
+                visibility: hidden;
+              }
+            }
+
+            @-moz-keyframes skip {
+            to {
+                background-position: 0 100%;
+              }
+            }
+            @-webkit-keyframes skip {
+              to {
+                background-position: 0 100%;
+              }
+            }
+            @keyframes skip {
+              to {
+                background-position: 0 100%;
+              }
+            }
+
+            body{
+                background-color:#222222;
+                color:white;
+                font-family: 'Inconsolata';
+                background-image:url(img/404-stripe.png), url(img/404-noise.png);
+                /*background-repeat:repeat-x, repeat;*/
+                -webkit-animation:skip 3s linear infinite;
+                animation:skip 3s linear infinite;
+            }
+            
+            .terminal .command:before{
+                content:'/>';
+                color:green;
+                font-weight:bold;
+            }
+            
+            .terminal .command:last-child:after{
+                content:'a';
+                width:1em;
+                color:white;
+                background-color:white;
+                animation: blink 1s steps(5, start) infinite;
+                -webkit-animation: blink 1s steps(5, start) infinite;
+            }
+            
+            .terminal .command{
+                word-wrap:break-word;
+            }
+            
+            .typed-cursor{
+                display:none;
+            }
+            
+            .message:after{
+                content:'a';
+                width:1em;
+                color:white;
+                background-color:white;
+                animation: blink 1s steps(5, start) infinite;
+                -webkit-animation: blink 1s steps(5, start) infinite;
+            }
+            
+            .cmd{
+                color:#6969ff;
+            }
+            
+            .title1{
+                color:#e43b3b;
+                text-decoration:underline;
+            }
+            
+            .title2{
+                color:#6969ff;
+                text-decoration:underline;
+            }
+            
+            .highlight1{
+                color:#6969ff;
+            }
+            
+            .highlight2{
+                color:#e43b3b;
+            }
+            
+            .name{
+                color:#b26818;
+                text-decoration:underline;
+            }
+            
+            .projects{
+                
+            }
+        </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript" src="js/lib/typed.js"></script>
         <script type="text/javascript">
         
             $(function(){
                 var welcometext = ""
-                welcometext += "Welcome to Nitish Akalwadi's geeky terminal^2000 <br/><br/>";
+                welcometext += "Welcome to <span class='name'>Nitish Akalwadi</span>'s geeky terminal^2000 <br/><br/>";
                 welcometext += "Use the following commands to know more.<br/>";
                 welcometext += "<pre>";
-                welcometext += "role            : get the roles and reponsibilities I have undertaken.<br/>";
-                welcometext += "responsibility  : alias for role.<br/>";
-                welcometext += "experience      : get details of the total experience I have.<br/>";
-                welcometext += "education       : get my education details.<br/>";
-                welcometext += "projects        : get the details of the projects I have undertaken till date.<br/>";
-                welcometext += "skills          : get details of my skills.<br/>";
-                welcometext += "personal        : get my personal details.<br/>";
-                welcometext += "clear           : clear screen<br/><br/>";
+                welcometext += "<span class='cmd'>role</span>            : get the roles and reponsibilities I have undertaken<br/>";
+                welcometext += "<span class='cmd'>responsibility</span>  : alias for role<br/>";
+                welcometext += "<span class='cmd'>experience</span>      : get details of the total experience I have<br/>";
+                welcometext += "<span class='cmd'>education</span>       : get my education details<br/>";
+                welcometext += "<span class='cmd'>projects</span>        : get the details of the projects I have undertaken till date<br/>";
+                welcometext += "<span class='cmd'>skills</span>          : get details of my skills<br/>";
+                welcometext += "<span class='cmd'>personal</span>        : get my personal details<br/>";
+                welcometext += "<span class='cmd'>download</span>        : download my resume<br/>";
+                welcometext += "<span class='cmd'>clear</span>           : clear screen<br/>";
+                welcometext += "<span class='cmd'>help</span>            : display this help text<br/><br/>";
                 welcometext += "</pre>";
                 welcometext += "press enter to continue.";
                 
@@ -84,6 +189,9 @@
                         case "personal" : retVal = getPersonalDetails();
                                             break;
                                             
+                        case "download" : downloadDoc();
+                                            break;
+                                            
                         case "help" : retVal = getHelpMenu();
                                             break;
                                         
@@ -94,22 +202,29 @@
                 return retVal;
             }
             
+            
+            function downloadDoc(){
+                window.open("docs/nitishkumar_akalwadi_resume.pdf","_blank");
+            }
+            
             function getHelpMenu(){
                 var content = "";
                 content += "<div>";
                 content += "<br/>";
                 
-                content += "<div>Command List</div>";
-                content += "<ul>";
-                content += "<li>role : get the roles and reponsibilities I have undertaken.</li>";
-                content += "<li>responsibility : alias for role.</li>";
-                content += "<li>experience : get details of the total experience I have.</li>";
-                content += "<li>education : get my education details.</li>";
-                content += "<li>projects : get the details of the projects I have undertaken till date.</li>";
-                content += "<li>skills : get details of my skills</li>";
-                content += "<li>personal : get my personal details.</li>";
-                content += "<li>clear : clear screen</li>";
-                content += "</ul>";
+                content += "<div class='title1'>Command List</div>";
+                content += "<table>";
+                content += "<tr><td>role</td><td> : </td><td>get the roles and reponsibilities I have undertaken</td></tr>";
+                content += "<tr><td>responsibility</td><td> : </td><td>alias for role</td></tr>";
+                content += "<tr><td>experience</td><td> : </td><td>get details of the total experience I have</td></tr>";
+                content += "<tr><td>education</td><td> : </td><td>get my education details</td></tr>";
+                content += "<tr><td>projects</td><td> : </td><td>get the details of the projects I have undertaken till date</td></tr>";
+                content += "<tr><td>skills</td><td> : </td><td>get details of my skills</td></tr>";
+                content += "<tr><td>personal</td><td> : </td><td>get my personal details</td></tr>";
+                content += "<tr><td>download</td><td> : </td><td>download my resume</td></tr>";
+                content += "<tr><td>clear</td><td> : </td><td>clear screen</td></tr>";
+                content += "<tr><td>help</td><td> : </td><td>display this help text</td></tr>";
+                content += "</table>";
                 
                 content += "<br/>";
                 content += "</div>";
@@ -122,14 +237,15 @@
                 content += "<div>";
                 content += "<br/>";
                 
-                content += "<ul>";
-                content += "<li>DOB : 26th April 1991</li>";
-                content += "<li>Gender : Male</li>";
-                content += "<li>Marital Status : Single</li>";
-                content += "<li>Nationality : Indian</li>";
-                content += "<li>Languages Known : English, Hindi, Kannada</li>";
-                content += "<li>Father's Name : Vasant</li>"
-                content += "</ul>";
+                content += "<div class='title1'>Personal Details</div>";
+                content += "<table>";
+                content += "<tr><td>DOB</td><td> : </td><td>26th April 1991</td></tr>";
+                content += "<tr><td>Gender</td><td> : </td><td>Male</td></tr>";
+                content += "<tr><td>Marital Status</td><td> : </td><td>Single</td></tr>";
+                content += "<tr><td>Nationality</td><td> : </td><td>Indian</td></tr>";
+                content += "<tr><td>Languages Known</td><td> : </td><td>English, Hindi, Kannada</td></tr>";
+                content += "<tr><td>Father's Name</td><td> : </td><td>Vasant</td></tr>"
+                content += "</table>";
                 
                 content += "<br/>";
                 content += "</div>";
@@ -141,15 +257,16 @@
                 var content = "";
                 content += "<div>";
                 content += "<br/>";
+                content += "<div class='title1'>Technical Skills</div>";
                 
-                content += "<ul>";
-                content += "<li>Languages : C, C++</li>";
-                content += "<li>Operating Systems : Windows, Linux</li>";
-                content += "<li>Database : MySQL</li>";
-                content += "<li>Web Technologies : PHP, HTML, CSS, JavaScript, JQuery, Jquery UI, JSON, AJAX.</li>";
-                content += "<li>Frameworks : CodeIgniter</li>";
-                content += "<li>Version Control : Git</li>";
-                content += "<ul>";
+                content += "<table>";
+                content += "<tr><td>Languages</td><td> : </td><td>C, C++</td></tr>";
+                content += "<tr><td>Operating Systems</td><td> : </td><td>Windows, Linux</td></tr>";
+                content += "<tr><td>Database</td><td> : </td><td>MySQL</td></tr>";
+                content += "<tr><td>Web Technologies</td><td> : </td><td>PHP, HTML, CSS, JavaScript, JQuery, Jquery UI, JSON, AJAX.</td></tr>";
+                content += "<tr><td>Frameworks</td><td> : </td><td>CodeIgniter</td></tr>";
+                content += "<tr><td>Version Control</td><td> : </td><td>Git</td></tr>";
+                content += "</table>";
                 
                 content += "<br/>";
                 content += "<div>";
@@ -159,13 +276,13 @@
             
             function getProjects(){
                 var content = "";
-                content += "<div>";
+                content += "<div class='projects'>";
                 content += "<br/>";
                 
-                content += "<div>Projects</div>";
+                content += "<div class='title1'>Projects</div>";
                 
                 content += "<div>";
-                content += "<div>Activity Tracking System</div>";
+                content += "<div class='title2'>Activity Tracking System</div>";
                 content += "<div>Team Size : 2</div>";
                 content += "<ul>";
                 content += "<li>A partner management system, used to assign tasks/activities to various partners and accordingly generate various reports showing effort investment in various areas, help comparing performance of partners and hence enables them to align their work with company as well as other partners, which in turn ensures better profitability.</li>";
@@ -177,7 +294,7 @@
                 content += "<br/>";
                 
                 content += "<div>";
-                content += "<div>Employee Performance Managemenet System</div>";
+                content += "<div class='title2'>Employee Performance Managemenet System</div>";
                 content += "<div>Team Size : 2</div>";
                 content += "<ul>";
                 content += "<li>A performance management system (based on KRA framework), which help employees to set their objectives on quarterly basis and later get rated on the basis of objective achieved. The system is accompanied with review framework where reviews can be done or demanded at any point of time.The results and reports generated are used by top management authorities to work on promotion cycle for employees.</li>";
@@ -189,18 +306,18 @@
                 content += "<br/>";
                 
                 content += "<div>";
-                content += "<div>Weekly 45 hours attendance system</div>";
+                content += "<div class='title2'>Weekly 45 hours attendance system</div>";
                 content += "<div>Team Size : 2</div>";
                 content += "<ul>";
                 content += "<li>Attendance management system, which reads the attendance log from access card machine, maps the log with employee data and hence captures the attendance of employees.The additional capabilities of system involves calculation of weekly, monthly and yearly average working hours of employees which helps employees to collect knowledge of their working efficiencies and generates reports which enables team leads and management to keep a check on employee activities.</li>";
                 content += "<li>The system works on Files and File groups architecture.</li>";
-                content += "<li></li>Technologies used includes HTML, CSS, javascript, Jquery and AJAX (clientside) and PHP5 and MySql(server-side).";
+                content += "<li>Technologies used includes HTML, CSS, javascript, Jquery and AJAX (clientside) and PHP5 and MySql(server-side).</li>";
                 content += "</ul>";
                 content += "</div>";
                 
                 content += "<br/>";
                 
-                content += "<div>Other Works</div>";
+                content += "<div class='title1'>Other Works</div>";
                 
                 content += "<div>";
                 content += "<ul>";
@@ -212,24 +329,24 @@
                 
                 content += "<br/>";
                 
-                content += "<div>College Projects</div>";
+                content += "<div class='title1'>College Projects</div>";
                 
                 content += "<div>";
-                content += "<div>Event Reminder</div>";
+                content += "<div class='title2'>Event Reminder</div>";
                 content += "<div>An application to remind user about the upcoming events and also give details about the past and future events entered by the user. It had the functionality of snooze and also to postpone the event to next day, week, month and year.</div>";
                 content += "</div>";
                 
                 content += "<br/>";
                 
                 content += "<div>";
-                content += "<div>TWEET TWEET</div>";
+                content += "<div class='title2'>TWEET TWEET</div>";
                 content += "<div>An android game developed as a part of mini project. It is a never ending running/flying game where the ultimate winner is the one with the highest score.</div>";
                 content += "</div>";
                 
                 content += "<br/>";
                 
                 content += "<div>";
-                content += "<div>CBIR System for Orthopaedic X-Ray Diagnosis</div>";
+                content += "<div class='title2'>CBIR System for Orthopaedic X-Ray Diagnosis</div>";
                 content += "<div>The CBIR system could analyse an uploaded X-ray image, perform various manipulations on the image to increase its quality, analyse it and provide top matching images from the database along with the description of the diagnosis, cause and treatment of the selected image. This would help doctors and medical students in identifying diseases and taking decisions more precisely and quickly.</div>";
                 content += "</div>";
                 
@@ -244,6 +361,7 @@
                 content += "<div>";
                 content += "<br/>";
                 
+                content += "<div class='title1'>Roles and Responsibilities</div>";
                 content += "<ul>";
                 content += "<li>Functioning in domain of Information Systems as a developer at both User-Interface and Database levels.</li>";
                 content += "<li>Shoulder responsibilities in understanding requirements and developing designs of front-end(User Experience) and back-end Schema Designing through Relational Data Modal(MySQL).</li>";
@@ -262,22 +380,28 @@
                 var content = "";
                 content += "<div>";
                 content += "<br/>";
+                content += "<div class='title1'>Education Details</div>";
+                
+                content += "<div>----------------------------------------------------------------------</div>";
                 
                 content += "<div>B.E., Bachelor of Engineering - Computer Science. (2009-2013)</div>";
                 content += "<div>B.V.Bhoomaraddi College of Engineering & Technology, Hubli</div>";
-                content += "<div>CGPA: 8.06 (First Class with Distinction)</div>";
+                content += "<div>CGPA: <span class='highlight2'>8.06</span> (First Class with Distinction)</div>";
                 
                 content += "<br/>";
+                content += "<div>----------------------------------------------------------------------</div>";
                 
                 content += "<div>PUC: Chetan PU Science College, Hubli in 2009</div>";
-                content += "<div>Percentage: 74.83</div>";
+                content += "<div>Percentage: <span class='highlight2'>74.83</span></div>";
                 
                 content += "<br/>";
+                content += "<div>----------------------------------------------------------------------</div>";
                 
                 content += "<div>SSLC: St. Joseph's High School, Dharwad in 2007</div>";
-                content += "<div>Percentage: 90.72 (Distinction)</div>";
+                content += "<div>Percentage: <span class='highlight2'>90.72</span> (Distinction)</div>";
                 
                 content += "<br/>";
+                content += "<div>----------------------------------------------------------------------</div>";
                 content += "</div>";
                 
                 return content;
@@ -287,73 +411,28 @@
                 var content = "";
                 content += "<div>";
                 content += "<br/>";
+                content += "<div class='title1'>Work Experience Details</div>";
                 
-                content += "<div>Travelyaari.com, Mantis Technologies: March, 2015 - Till Date</div>";
+                content += "<div>----------------------------------------------------------------------</div>";
+                
+                content += "<div><span class='highlight1'>Travelyaari.com, Mantis Technologies</span>: March, 2015 - Till Date</div>";
                 content += "<div>Designation: Software Engineer</div>";
                 content += "<div>Location: Bangalore, India</div>";
                 
                 content += "<br/>";
+                content += "<div>----------------------------------------------------------------------</div>";
                 
-                content += "<div>Tally Solutions Private Limited: Aug, 2013 - Feb, 2015</div>";
+                content += "<div><span class='highlight1'>Tally Solutions Private Limited</span>: Aug, 2013 - Feb, 2015</div>";
                 content += "<div>Designation: Software Engineer - CIS</div>";
                 content += "<div>Location: Bangalore, India</div>";
                 
                 content += "<br/>";
+                content += "<div>----------------------------------------------------------------------</div>";
                 content += "</div>";
                 
                 return content;
             }
         </script>
-        <style type="text/css">
-        
-            @keyframes blink {
-              to {
-                visibility: hidden;
-              }
-            }
-            @-webkit-keyframes blink {
-              to {
-                visibility: hidden;
-              }
-            }
-
-            body{
-                background-color:black;    
-                color:white;
-            }
-            
-            .terminal .command:before{
-                content:'/>';
-                color:green;
-                font-weight:bold;
-            }
-            
-            .terminal .command:last-child:after{
-                content:'a';
-                width:1em;
-                color:white;
-                background-color:white;
-                animation: blink 1s steps(5, start) infinite;
-                -webkit-animation: blink 1s steps(5, start) infinite;
-            }
-            
-            .terminal .command{
-                word-wrap:break-word;
-            }
-            
-            .typed-cursor{
-                display:none;
-            }
-            
-            .message:after{
-                content:'a';
-                width:1em;
-                color:white;
-                background-color:white;
-                animation: blink 1s steps(5, start) infinite;
-                -webkit-animation: blink 1s steps(5, start) infinite;
-            }
-        </style>
     </head>
     <body>
         <div class="message"></div>
