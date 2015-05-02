@@ -117,7 +117,7 @@
                 welcometext += "<span class='cmd'>responsibility</span>  : alias for role<br/>";
                 welcometext += "<span class='cmd'>experience</span>      : display details of my total experience<br/>";
                 welcometext += "<span class='cmd'>education</span>       : display my education details<br/>";
-                welcometext += "<span class='cmd'>projects</span>        : display the details of the projects I have<br/>";
+                welcometext += "<span class='cmd'>projects</span>        : display the details of the projects I have undertaken<br/>";
                 welcometext += "<span class='cmd'>skills</span>          : display details of my skills<br/>";
                 welcometext += "<span class='cmd'>personal</span>        : display my personal details<br/>";
                 welcometext += "<span class='cmd'>download</span>        : download my resume<br/>";
