@@ -2,6 +2,7 @@
 <html>
     <head>
         <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" href="misc/favicon.ico">
         <style type="text/css">
         
             @keyframes blink {
