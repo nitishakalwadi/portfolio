@@ -19,7 +19,7 @@
  * BASIC
  */
  $config['site_title'] = 'test';              // Site title
- $config['base_url'] = 'http:nitishakalwadi.th/blog';                    // Override base URL (e.g. http://example.com)
+ $config['base_url'] = 'http://nitishakalwadi.tk/blog';                    // Override base URL (e.g. http://example.com)
 
 /*
  * THEME
