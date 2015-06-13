@@ -2,7 +2,7 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'system/blueprints/config/site.yaml',
-    'modified' => 1434125426,
+    'modified' => 1434186494,
     'data' => [
         'title' => 'Site',
         'form' => [

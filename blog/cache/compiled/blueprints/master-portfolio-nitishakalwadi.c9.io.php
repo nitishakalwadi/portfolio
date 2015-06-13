@@ -1,39 +1,75 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\Config',
-    'checksum' => '7cdf860f08c1de7dae0a84d85e6e1a55:4cb4718e42415deb79e419b49dbf98f8',
+    'checksum' => '9d75909c57a4da592b502ff0e9df8b58:b9ad190353d47ab4bf440d13c2c3c431',
     'files' => [
         'user/plugins' => [
+            'plugins/pagination' => [
+                'file' => 'user/plugins/pagination/blueprints.yaml',
+                'modified' => 1434186544
+            ],
             'plugins/error' => [
                 'file' => 'user/plugins/error/blueprints.yaml',
-                'modified' => 1434125450
+                'modified' => 1434186536
             ],
             'plugins/problems' => [
                 'file' => 'user/plugins/problems/blueprints.yaml',
-                'modified' => 1434125452
+                'modified' => 1434186546
+            ],
+            'plugins/feed' => [
+                'file' => 'user/plugins/feed/blueprints.yaml',
+                'modified' => 1434186540
             ]
         ],
         'system/blueprints/config' => [
             'streams' => [
                 'file' => 'system/blueprints/config/streams.yaml',
-                'modified' => 1434125426
+                'modified' => 1434186495
             ],
             'system' => [
                 'file' => 'system/blueprints/config/system.yaml',
-                'modified' => 1434125427
+                'modified' => 1434186496
             ],
             'site' => [
                 'file' => 'system/blueprints/config/site.yaml',
-                'modified' => 1434125426
+                'modified' => 1434186494
             ],
             'media' => [
                 'file' => 'system/blueprints/config/media.yaml',
-                'modified' => 1434125426
+                'modified' => 1434186494
             ]
         ]
     ],
     'data' => [
         'items' => [
+            'plugins.pagination.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.pagination.enabled'
+            ],
+            'plugins.pagination.built_in_css' => [
+                'type' => 'toggle',
+                'label' => 'Use built in CSS',
+                'highlight' => 1,
+                'default' => 1,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.pagination.built_in_css'
+            ],
             'plugins.error.enabled' => [
                 'type' => 'toggle',
                 'label' => 'Plugin status',
@@ -61,6 +97,54 @@ return [
                     'type' => 'bool'
                 ],
                 'name' => 'plugins.problems.enabled'
+            ],
+            'plugins.feed.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.feed.enabled'
+            ],
+            'plugins.feed.count' => [
+                'type' => 'text',
+                'label' => 'Feed count',
+                'validate' => [
+                    'type' => 'int',
+                    'min' => 10,
+                    'max' => 1000
+                ],
+                'name' => 'plugins.feed.count'
+            ],
+            'plugins.feed.description' => [
+                'type' => 'textarea',
+                'label' => 'Description',
+                'name' => 'plugins.feed.description'
+            ],
+            'plugins.feed.lang' => [
+                'type' => 'text',
+                'label' => 'Feed language code',
+                'placeholder' => 'en-us',
+                'validate' => [
+                    'pattern' => '[a-zA-Z]{2,3}-a-zA-Z]{2,3}'
+                ],
+                'name' => 'plugins.feed.lang'
+            ],
+            'plugins.feed.length' => [
+                'type' => 'text',
+                'label' => 'Feed Length',
+                'validate' => [
+                    'type' => 'int',
+                    'min' => 10,
+                    'max' => 10000
+                ],
+                'name' => 'plugins.feed.length'
             ],
             'streams.schemes.xxx' => [
                 'type' => 'array',
@@ -741,10 +825,10 @@ return [
                     'America/Argentina/Tucuman' => '(UTC-03:00) America/Argentina/Tucuman',
                     'America/Argentina/La_Rioja' => '(UTC-03:00) America/Argentina/La_Rioja',
                     'America/Glace_Bay' => '(UTC-03:00) America/Glace_Bay',
-                    'America/Argentina/Ushuaia' => '(UTC-03:00) America/Argentina/Ushuaia',
-                    'America/Halifax' => '(UTC-03:00) America/Halifax',
-                    'America/Fortaleza' => '(UTC-03:00) America/Fortaleza',
                     'America/Goose_Bay' => '(UTC-03:00) America/Goose_Bay',
+                    'America/Argentina/Ushuaia' => '(UTC-03:00) America/Argentina/Ushuaia',
+                    'America/Fortaleza' => '(UTC-03:00) America/Fortaleza',
+                    'America/Halifax' => '(UTC-03:00) America/Halifax',
                     'America/Belem' => '(UTC-03:00) America/Belem',
                     'America/Cayenne' => '(UTC-03:00) America/Cayenne',
                     'America/Bahia' => '(UTC-03:00) America/Bahia',
@@ -754,36 +838,36 @@ return [
                     'America/Noronha' => '(UTC-02:00) America/Noronha',
                     'America/Godthab' => '(UTC-02:00) America/Godthab',
                     'Atlantic/Cape_Verde' => '(UTC-01:00) Atlantic/Cape_Verde',
-                    'Africa/Bissau' => '(UTC+00:00) Africa/Bissau',
-                    'America/Scoresbysund' => '(UTC+00:00) America/Scoresbysund',
-                    'Africa/Accra' => '(UTC+00:00) Africa/Accra',
                     'Atlantic/Azores' => '(UTC+00:00) Atlantic/Azores',
-                    'Africa/Conakry' => '(UTC+00:00) Africa/Conakry',
-                    'UTC' => '(UTC+00:00) UTC',
-                    'Africa/Dakar' => '(UTC+00:00) Africa/Dakar',
-                    'Atlantic/Reykjavik' => '(UTC+00:00) Atlantic/Reykjavik',
-                    'Africa/Abidjan' => '(UTC+00:00) Africa/Abidjan',
+                    'America/Scoresbysund' => '(UTC+00:00) America/Scoresbysund',
                     'Africa/Lome' => '(UTC+00:00) Africa/Lome',
+                    'Africa/Accra' => '(UTC+00:00) Africa/Accra',
+                    'Africa/Dakar' => '(UTC+00:00) Africa/Dakar',
+                    'UTC' => '(UTC+00:00) UTC',
+                    'Africa/El_Aaiun' => '(UTC+00:00) Africa/El_Aaiun',
+                    'Africa/Bissau' => '(UTC+00:00) Africa/Bissau',
+                    'Africa/Conakry' => '(UTC+00:00) Africa/Conakry',
+                    'Africa/Casablanca' => '(UTC+00:00) Africa/Casablanca',
+                    'Africa/Abidjan' => '(UTC+00:00) Africa/Abidjan',
                     'Atlantic/St_Helena' => '(UTC+00:00) Atlantic/St_Helena',
                     'Africa/Bamako' => '(UTC+00:00) Africa/Bamako',
-                    'Africa/Monrovia' => '(UTC+00:00) Africa/Monrovia',
+                    'Africa/Sao_Tome' => '(UTC+00:00) Africa/Sao_Tome',
                     'Africa/Freetown' => '(UTC+00:00) Africa/Freetown',
                     'America/Danmarkshavn' => '(UTC+00:00) America/Danmarkshavn',
-                    'Africa/Ouagadougou' => '(UTC+00:00) Africa/Ouagadougou',
-                    'Africa/Sao_Tome' => '(UTC+00:00) Africa/Sao_Tome',
-                    'Africa/Banjul' => '(UTC+00:00) Africa/Banjul',
                     'Africa/Nouakchott' => '(UTC+00:00) Africa/Nouakchott',
-                    'Europe/Jersey' => '(UTC+01:00) Europe/Jersey',
-                    'Europe/London' => '(UTC+01:00) Europe/London',
-                    'Africa/El_Aaiun' => '(UTC+01:00) Africa/El_Aaiun',
-                    'Africa/Douala' => '(UTC+01:00) Africa/Douala',
+                    'Africa/Ouagadougou' => '(UTC+00:00) Africa/Ouagadougou',
+                    'Africa/Monrovia' => '(UTC+00:00) Africa/Monrovia',
+                    'Africa/Banjul' => '(UTC+00:00) Africa/Banjul',
+                    'Atlantic/Reykjavik' => '(UTC+00:00) Atlantic/Reykjavik',
                     'Africa/Algiers' => '(UTC+01:00) Africa/Algiers',
-                    'Africa/Casablanca' => '(UTC+01:00) Africa/Casablanca',
-                    'Africa/Brazzaville' => '(UTC+01:00) Africa/Brazzaville',
+                    'Europe/London' => '(UTC+01:00) Europe/London',
+                    'Europe/Isle_of_Man' => '(UTC+01:00) Europe/Isle_of_Man',
+                    'Africa/Douala' => '(UTC+01:00) Africa/Douala',
                     'Europe/Dublin' => '(UTC+01:00) Europe/Dublin',
                     'Africa/Bangui' => '(UTC+01:00) Africa/Bangui',
+                    'Europe/Jersey' => '(UTC+01:00) Europe/Jersey',
                     'Europe/Lisbon' => '(UTC+01:00) Europe/Lisbon',
-                    'Europe/Isle_of_Man' => '(UTC+01:00) Europe/Isle_of_Man',
+                    'Africa/Brazzaville' => '(UTC+01:00) Africa/Brazzaville',
                     'Africa/Libreville' => '(UTC+01:00) Africa/Libreville',
                     'Africa/Niamey' => '(UTC+01:00) Africa/Niamey',
                     'Africa/Lagos' => '(UTC+01:00) Africa/Lagos',
@@ -1091,11 +1175,22 @@ return [
         ],
         'nested' => [
             'plugins' => [
+                'pagination' => [
+                    'enabled' => 'plugins.pagination.enabled',
+                    'built_in_css' => 'plugins.pagination.built_in_css'
+                ],
                 'error' => [
                     'enabled' => 'plugins.error.enabled'
                 ],
                 'problems' => [
                     'enabled' => 'plugins.problems.enabled'
+                ],
+                'feed' => [
+                    'enabled' => 'plugins.feed.enabled',
+                    'count' => 'plugins.feed.count',
+                    'description' => 'plugins.feed.description',
+                    'lang' => 'plugins.feed.lang',
+                    'length' => 'plugins.feed.length'
                 ]
             ],
             'streams' => [

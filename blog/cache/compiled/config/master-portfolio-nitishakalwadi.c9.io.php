@@ -1,8 +1,8 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\Config',
-    'timestamp' => 1434125609,
-    'checksum' => 'd61920a19ffcb115ee918921e855302e',
+    'timestamp' => 1434186730,
+    'checksum' => 'c75b7b0e8946d91c0aaadbe8e9411ed6',
     'data' => [
         'streams' => [
             'schemes' => [
@@ -119,6 +119,12 @@ return [
             ]
         ],
         'plugins' => [
+            'pagination' => [
+                'enabled' => true,
+                'path' => '/blog',
+                'built_in_css' => true,
+                'delta' => 0
+            ],
             'error' => [
                 'enabled' => true,
                 'routes' => [
@@ -128,6 +134,13 @@ return [
             'problems' => [
                 'enabled' => true,
                 'built_in_css' => true
+            ],
+            'feed' => [
+                'enabled' => true,
+                'limit' => 10,
+                'description' => 'My Feed Description',
+                'lang' => 'en-us',
+                'length' => 500
             ]
         ],
         'system' => [
@@ -135,10 +148,10 @@ return [
             'timezone' => '',
             'param_sep' => ':',
             'home' => [
-                'alias' => '/home'
+                'alias' => '/blog'
             ],
             'pages' => [
-                'theme' => 'antimatter',
+                'theme' => 'notepad',
                 'order' => [
                     'by' => 'default',
                     'dir' => 'asc'
@@ -227,14 +240,13 @@ return [
             ]
         ],
         'site' => [
-            'title' => 'Grav',
+            'title' => 'Notepad',
             'author' => [
-                'name' => 'Joe Bloggs',
-                'email' => 'joe@test.com'
+                'name' => 'Karol Orzel',
+                'email' => 'karol@rockettheme.com'
             ],
             'taxonomies' => [
-                0 => 'category',
-                1 => 'tag'
+                0 => 'tag'
             ],
             'blog' => [
                 'route' => '/blog'
@@ -252,6 +264,58 @@ return [
                 '/something/else' => '/blog/sample-3',
                 '/another/one/here' => '/blog/sample-3',
                 '/new/*' => '/blog/*'
+            ],
+            'description' => 'Blogging is fun',
+            'owner' => [
+                'name' => 'Your Name',
+                'email' => 'you@email.com',
+                'description' => 'Awesome Dude, Awesome Life',
+                'twitter' => 'getgrav',
+                'facebook' => 'getgrav',
+                'github' => 'getgrav',
+                'instagram' => 'getgrav',
+                'google_plus' => 'https://plus.google.com/+getgrav'
+            ],
+            'logo' => '/user/themes/notepad/images/logo.png',
+            'google_analytics' => NULL,
+            'google_verify' => NULL,
+            'bing_verify' => NULL,
+            'links' => [
+                0 => [
+                    'title' => 'Featured Posts',
+                    'url' => '/featured'
+                ],
+                1 => [
+                    'title' => 'Categories',
+                    'url' => '/categories'
+                ],
+                2 => [
+                    'title' => 'About',
+                    'url' => '/about'
+                ]
+            ],
+            'include' => [
+                0 => '.htaccess'
+            ],
+            'exclude' => [
+                0 => 'lib',
+                1 => 'config.rb',
+                2 => 'Gemfile',
+                3 => 'Capfile',
+                4 => 'Gemfile.lock',
+                5 => 'config',
+                6 => 'log',
+                7 => 'Rakefile',
+                8 => 'Rakefile.rb',
+                9 => 'tmp',
+                10 => 'less',
+                11 => '*.sublime-project',
+                12 => '*.sublime-workspace',
+                13 => 'test',
+                14 => 'spec',
+                15 => 'Gruntfile.js',
+                16 => 'package.json',
+                17 => 'node_modules'
             ]
         ],
         'media' => [

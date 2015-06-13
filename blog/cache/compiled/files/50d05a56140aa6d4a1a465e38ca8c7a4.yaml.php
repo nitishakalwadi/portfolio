@@ -2,14 +2,14 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'user/config/system.yaml',
-    'modified' => 1434125449,
+    'modified' => 1434186516,
     'data' => [
         'absolute_urls' => false,
         'home' => [
-            'alias' => '/home'
+            'alias' => '/blog'
         ],
         'pages' => [
-            'theme' => 'antimatter',
+            'theme' => 'notepad',
             'markdown_extra' => false,
             'process' => [
                 'markdown' => true,
