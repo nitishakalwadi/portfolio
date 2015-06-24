@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <title>Nitish Akalwadi</title>
+        <meta name="description" content="This is the portfolio website of Nitishkumar AKalwadi. You can call me just Nitish Akalwadi. This website showcases my work, experience, skills etc.">
         <link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="shortcut icon" href="misc/favicon.ico">
         <style type="text/css">
