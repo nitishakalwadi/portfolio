@@ -1,25 +1,25 @@
-title: Notepad
-description: "Blogging is fun"
+title: G for Geek
+description: "Be Techno Hungry"
 author:
-  name: Karol Orzel
-  email: 'karol@rockettheme.com'
+  name: Nitish Akalwadi
+  email: 'nitish_akalwadi@yahoo.co.in'
 metadata:
-    description: 'Grav is an easy to use, yet powerful, open source flat-file CMS'
+    description: 'Technology blog by Nitish Akalwadi'
 taxonomies: [tag]
 
 # Owner/author information
 owner:
-  name:           Your Name
-  email:          you@email.com
+  name:           Nitish Akalwadi
+  email:          nitish_akalwadi@yahoo.co.in
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
   description:    Awesome Dude, Awesome Life
   # Social networking links used in footer. Update and remove as you like.
-  twitter:        getgrav
-  facebook:       getgrav
-  github:         getgrav      
-  instagram:      getgrav
+  twitter:        #getgrav
+  facebook:       #getgrav
+  github:         #getgrav      
+  instagram:      #getgrav
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:    https://plus.google.com/+getgrav
+  google_plus:    #https://plus.google.com/+getgrav
 
 logo: /user/themes/notepad/images/logo.png
 

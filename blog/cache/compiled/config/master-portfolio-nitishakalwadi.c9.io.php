@@ -1,8 +1,8 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\Config',
-    'timestamp' => 1434186730,
-    'checksum' => 'c75b7b0e8946d91c0aaadbe8e9411ed6',
+    'timestamp' => 1434508827,
+    'checksum' => 'c6087882c86f1e3594495862f8341143',
     'data' => [
         'streams' => [
             'schemes' => [
@@ -119,6 +119,17 @@ return [
             ]
         ],
         'plugins' => [
+            'feed' => [
+                'enabled' => true,
+                'limit' => 10,
+                'description' => 'My Feed Description',
+                'lang' => 'en-us',
+                'length' => 500
+            ],
+            'problems' => [
+                'enabled' => true,
+                'built_in_css' => true
+            ],
             'pagination' => [
                 'enabled' => true,
                 'path' => '/blog',
@@ -130,17 +141,6 @@ return [
                 'routes' => [
                     404 => '/error'
                 ]
-            ],
-            'problems' => [
-                'enabled' => true,
-                'built_in_css' => true
-            ],
-            'feed' => [
-                'enabled' => true,
-                'limit' => 10,
-                'description' => 'My Feed Description',
-                'lang' => 'en-us',
-                'length' => 500
             ]
         ],
         'system' => [
@@ -237,85 +237,6 @@ return [
             ],
             'security' => [
                 'default_hash' => '$2y$10$kwsyMVwM8/7j0K/6LHT.g.Fs49xOCTp2b8hh/S5.dPJuJcJB6T.UK'
-            ]
-        ],
-        'site' => [
-            'title' => 'Notepad',
-            'author' => [
-                'name' => 'Karol Orzel',
-                'email' => 'karol@rockettheme.com'
-            ],
-            'taxonomies' => [
-                0 => 'tag'
-            ],
-            'blog' => [
-                'route' => '/blog'
-            ],
-            'metadata' => [
-                'description' => 'Grav is an easy to use, yet powerful, open source flat-file CMS'
-            ],
-            'summary' => [
-                'enabled' => true,
-                'format' => 'short',
-                'size' => 300,
-                'delimiter' => '==='
-            ],
-            'routes' => [
-                '/something/else' => '/blog/sample-3',
-                '/another/one/here' => '/blog/sample-3',
-                '/new/*' => '/blog/*'
-            ],
-            'description' => 'Blogging is fun',
-            'owner' => [
-                'name' => 'Your Name',
-                'email' => 'you@email.com',
-                'description' => 'Awesome Dude, Awesome Life',
-                'twitter' => 'getgrav',
-                'facebook' => 'getgrav',
-                'github' => 'getgrav',
-                'instagram' => 'getgrav',
-                'google_plus' => 'https://plus.google.com/+getgrav'
-            ],
-            'logo' => '/user/themes/notepad/images/logo.png',
-            'google_analytics' => NULL,
-            'google_verify' => NULL,
-            'bing_verify' => NULL,
-            'links' => [
-                0 => [
-                    'title' => 'Featured Posts',
-                    'url' => '/featured'
-                ],
-                1 => [
-                    'title' => 'Categories',
-                    'url' => '/categories'
-                ],
-                2 => [
-                    'title' => 'About',
-                    'url' => '/about'
-                ]
-            ],
-            'include' => [
-                0 => '.htaccess'
-            ],
-            'exclude' => [
-                0 => 'lib',
-                1 => 'config.rb',
-                2 => 'Gemfile',
-                3 => 'Capfile',
-                4 => 'Gemfile.lock',
-                5 => 'config',
-                6 => 'log',
-                7 => 'Rakefile',
-                8 => 'Rakefile.rb',
-                9 => 'tmp',
-                10 => 'less',
-                11 => '*.sublime-project',
-                12 => '*.sublime-workspace',
-                13 => 'test',
-                14 => 'spec',
-                15 => 'Gruntfile.js',
-                16 => 'package.json',
-                17 => 'node_modules'
             ]
         ],
         'media' => [
@@ -435,6 +356,85 @@ return [
                 'type' => 'file',
                 'thumb' => 'media/thumb-gz.png',
                 'mime' => 'application/gzip'
+            ]
+        ],
+        'site' => [
+            'title' => 'G for Geek',
+            'author' => [
+                'name' => 'Nitish Akalwadi',
+                'email' => 'nitish_akalwadi@yahoo.co.in'
+            ],
+            'taxonomies' => [
+                0 => 'tag'
+            ],
+            'blog' => [
+                'route' => '/blog'
+            ],
+            'metadata' => [
+                'description' => 'Technology blog by Nitish Akalwadi'
+            ],
+            'summary' => [
+                'enabled' => true,
+                'format' => 'short',
+                'size' => 300,
+                'delimiter' => '==='
+            ],
+            'routes' => [
+                '/something/else' => '/blog/sample-3',
+                '/another/one/here' => '/blog/sample-3',
+                '/new/*' => '/blog/*'
+            ],
+            'description' => 'Be Techno Hungry',
+            'owner' => [
+                'name' => 'Nitish Akalwadi',
+                'email' => 'nitish_akalwadi@yahoo.co.in',
+                'description' => 'Awesome Dude, Awesome Life',
+                'twitter' => NULL,
+                'facebook' => NULL,
+                'github' => NULL,
+                'instagram' => NULL,
+                'google_plus' => NULL
+            ],
+            'logo' => '/user/themes/notepad/images/logo.png',
+            'google_analytics' => NULL,
+            'google_verify' => NULL,
+            'bing_verify' => NULL,
+            'links' => [
+                0 => [
+                    'title' => 'Featured Posts',
+                    'url' => '/featured'
+                ],
+                1 => [
+                    'title' => 'Categories',
+                    'url' => '/categories'
+                ],
+                2 => [
+                    'title' => 'About',
+                    'url' => '/about'
+                ]
+            ],
+            'include' => [
+                0 => '.htaccess'
+            ],
+            'exclude' => [
+                0 => 'lib',
+                1 => 'config.rb',
+                2 => 'Gemfile',
+                3 => 'Capfile',
+                4 => 'Gemfile.lock',
+                5 => 'config',
+                6 => 'log',
+                7 => 'Rakefile',
+                8 => 'Rakefile.rb',
+                9 => 'tmp',
+                10 => 'less',
+                11 => '*.sublime-project',
+                12 => '*.sublime-workspace',
+                13 => 'test',
+                14 => 'spec',
+                15 => 'Gruntfile.js',
+                16 => 'package.json',
+                17 => 'node_modules'
             ]
         ]
     ]

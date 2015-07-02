@@ -1,9 +1,17 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\Config',
-    'checksum' => '9d75909c57a4da592b502ff0e9df8b58:b9ad190353d47ab4bf440d13c2c3c431',
+    'checksum' => 'b3b479c3ff114da69d68c18a1884f6c1:394e1c9e13679ac9b5f6f6878775b672',
     'files' => [
         'user/plugins' => [
+            'plugins/feed' => [
+                'file' => 'user/plugins/feed/blueprints.yaml',
+                'modified' => 1434186540
+            ],
+            'plugins/problems' => [
+                'file' => 'user/plugins/problems/blueprints.yaml',
+                'modified' => 1434186546
+            ],
             'plugins/pagination' => [
                 'file' => 'user/plugins/pagination/blueprints.yaml',
                 'modified' => 1434186544
@@ -11,93 +19,29 @@ return [
             'plugins/error' => [
                 'file' => 'user/plugins/error/blueprints.yaml',
                 'modified' => 1434186536
-            ],
-            'plugins/problems' => [
-                'file' => 'user/plugins/problems/blueprints.yaml',
-                'modified' => 1434186546
-            ],
-            'plugins/feed' => [
-                'file' => 'user/plugins/feed/blueprints.yaml',
-                'modified' => 1434186540
             ]
         ],
         'system/blueprints/config' => [
-            'streams' => [
-                'file' => 'system/blueprints/config/streams.yaml',
-                'modified' => 1434186495
-            ],
             'system' => [
                 'file' => 'system/blueprints/config/system.yaml',
                 'modified' => 1434186496
             ],
-            'site' => [
-                'file' => 'system/blueprints/config/site.yaml',
-                'modified' => 1434186494
+            'streams' => [
+                'file' => 'system/blueprints/config/streams.yaml',
+                'modified' => 1434186495
             ],
             'media' => [
                 'file' => 'system/blueprints/config/media.yaml',
+                'modified' => 1434186494
+            ],
+            'site' => [
+                'file' => 'system/blueprints/config/site.yaml',
                 'modified' => 1434186494
             ]
         ]
     ],
     'data' => [
         'items' => [
-            'plugins.pagination.enabled' => [
-                'type' => 'toggle',
-                'label' => 'Plugin status',
-                'highlight' => 1,
-                'default' => 0,
-                'options' => [
-                    1 => 'Enabled',
-                    0 => 'Disabled'
-                ],
-                'validate' => [
-                    'type' => 'bool'
-                ],
-                'name' => 'plugins.pagination.enabled'
-            ],
-            'plugins.pagination.built_in_css' => [
-                'type' => 'toggle',
-                'label' => 'Use built in CSS',
-                'highlight' => 1,
-                'default' => 1,
-                'options' => [
-                    1 => 'Enabled',
-                    0 => 'Disabled'
-                ],
-                'validate' => [
-                    'type' => 'bool'
-                ],
-                'name' => 'plugins.pagination.built_in_css'
-            ],
-            'plugins.error.enabled' => [
-                'type' => 'toggle',
-                'label' => 'Plugin status',
-                'highlight' => 1,
-                'default' => 0,
-                'options' => [
-                    1 => 'Enabled',
-                    0 => 'Disabled'
-                ],
-                'validate' => [
-                    'type' => 'bool'
-                ],
-                'name' => 'plugins.error.enabled'
-            ],
-            'plugins.problems.enabled' => [
-                'type' => 'toggle',
-                'label' => 'Plugin status',
-                'highlight' => 1,
-                'default' => 0,
-                'options' => [
-                    1 => 'Enabled',
-                    0 => 'Disabled'
-                ],
-                'validate' => [
-                    'type' => 'bool'
-                ],
-                'name' => 'plugins.problems.enabled'
-            ],
             'plugins.feed.enabled' => [
                 'type' => 'toggle',
                 'label' => 'Plugin status',
@@ -146,9 +90,61 @@ return [
                 ],
                 'name' => 'plugins.feed.length'
             ],
-            'streams.schemes.xxx' => [
-                'type' => 'array',
-                'name' => 'streams.schemes.xxx'
+            'plugins.problems.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.problems.enabled'
+            ],
+            'plugins.pagination.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.pagination.enabled'
+            ],
+            'plugins.pagination.built_in_css' => [
+                'type' => 'toggle',
+                'label' => 'Use built in CSS',
+                'highlight' => 1,
+                'default' => 1,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.pagination.built_in_css'
+            ],
+            'plugins.error.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.error.enabled'
             ],
             'system.home.alias' => [
                 'type' => 'pages',
@@ -1107,6 +1103,10 @@ return [
                 ],
                 'name' => 'system.param_sep'
             ],
+            'streams.schemes.xxx' => [
+                'type' => 'array',
+                'name' => 'streams.schemes.xxx'
+            ],
             'site.title' => [
                 'type' => 'text',
                 'label' => 'Site Title',
@@ -1175,27 +1175,22 @@ return [
         ],
         'nested' => [
             'plugins' => [
-                'pagination' => [
-                    'enabled' => 'plugins.pagination.enabled',
-                    'built_in_css' => 'plugins.pagination.built_in_css'
-                ],
-                'error' => [
-                    'enabled' => 'plugins.error.enabled'
-                ],
-                'problems' => [
-                    'enabled' => 'plugins.problems.enabled'
-                ],
                 'feed' => [
                     'enabled' => 'plugins.feed.enabled',
                     'count' => 'plugins.feed.count',
                     'description' => 'plugins.feed.description',
                     'lang' => 'plugins.feed.lang',
                     'length' => 'plugins.feed.length'
-                ]
-            ],
-            'streams' => [
-                'schemes' => [
-                    'xxx' => 'streams.schemes.xxx'
+                ],
+                'problems' => [
+                    'enabled' => 'plugins.problems.enabled'
+                ],
+                'pagination' => [
+                    'enabled' => 'plugins.pagination.enabled',
+                    'built_in_css' => 'plugins.pagination.built_in_css'
+                ],
+                'error' => [
+                    'enabled' => 'plugins.error.enabled'
                 ]
             ],
             'system' => [
@@ -1275,6 +1270,11 @@ return [
                 ],
                 'timezone' => 'system.timezone',
                 'param_sep' => 'system.param_sep'
+            ],
+            'streams' => [
+                'schemes' => [
+                    'xxx' => 'streams.schemes.xxx'
+                ]
             ],
             'site' => [
                 'title' => 'site.title',

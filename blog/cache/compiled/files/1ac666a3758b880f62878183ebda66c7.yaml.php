@@ -2,29 +2,29 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => 'user/config/site.yaml',
-    'modified' => 1434186515,
+    'modified' => 1434190058,
     'data' => [
-        'title' => 'Notepad',
-        'description' => 'Blogging is fun',
+        'title' => 'G for Geek',
+        'description' => 'Be Techno Hungry',
         'author' => [
-            'name' => 'Karol Orzel',
-            'email' => 'karol@rockettheme.com'
+            'name' => 'Nitish Akalwadi',
+            'email' => 'nitish_akalwadi@yahoo.co.in'
         ],
         'metadata' => [
-            'description' => 'Grav is an easy to use, yet powerful, open source flat-file CMS'
+            'description' => 'Technology blog by Nitish Akalwadi'
         ],
         'taxonomies' => [
             0 => 'tag'
         ],
         'owner' => [
-            'name' => 'Your Name',
-            'email' => 'you@email.com',
+            'name' => 'Nitish Akalwadi',
+            'email' => 'nitish_akalwadi@yahoo.co.in',
             'description' => 'Awesome Dude, Awesome Life',
-            'twitter' => 'getgrav',
-            'facebook' => 'getgrav',
-            'github' => 'getgrav',
-            'instagram' => 'getgrav',
-            'google_plus' => 'https://plus.google.com/+getgrav'
+            'twitter' => NULL,
+            'facebook' => NULL,
+            'github' => NULL,
+            'instagram' => NULL,
+            'google_plus' => NULL
         ],
         'logo' => '/user/themes/notepad/images/logo.png',
         'google_analytics' => NULL,
