@@ -1,3 +1,3 @@
 <?php
 
-header("Location:simple/");
+header("Location:geek/");
