@@ -1,0 +1,21 @@
+title: Nitishkumar Akalwadi
+description: Full Stack Web Developer
+author:
+  name: 
+  email: 'nitish_akalwadi@yahoo.co.in'
+metadata:
+    description: "This is Nitish Akalwadi's personal portfolio website."
+
+website: "Go Geek"
+websiteURL: "www.nitishakalwadi.tk/geek/"
+
+blog: "Blog"
+blogURL: "www.nitishakalwadi.tk/blog/"
+
+address:
+    - line: "'Chaitanya'"
+    - line: "Shivanand Nagar, Main Road,"
+    - line: "Dharwad, KA, IN - 580001"
+contact: 
+    - line: "nitish_akalwadi@yahoo.co.in"
+    - line: "+91 8147398285"
