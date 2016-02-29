@@ -4,7 +4,7 @@
 define('GRAV', true);
 define('GRAV_VERSION', '1.0.6');
 define('DS', '/');
-define('GRAV_PHP_MIN', '5.5.9');
+define('GRAV_PHP_MIN', '5.4.40');
 
 // Directories and Paths
 if (!defined('GRAV_ROOT')) {
