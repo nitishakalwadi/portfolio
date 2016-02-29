@@ -110,10 +110,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript" src="js/lib/typed.js"></script>
         <script type="text/javascript">
-        
+            var commandStack = new Array();
+            var globalCommandCounter = '';
             $(function(){
                 var welcometext = ""
-                welcometext += "Welcome to <span class='name'>Nitish Akalwadi</span>'s geeky terminal^2000 <br/><br/>";
+                welcometext += "Welcome to <a href='http://www.nitishakalwadi.tk' class='name'>Nitish Akalwadi</a>'s geeky terminal^2000 <br/><br/>";
                 welcometext += "Type '<span class='cmd'>help</span>' to know more<br/>";
                 // welcometext += "Use the following commands to know more.<br/>";
                 // welcometext += "<pre>";
@@ -158,16 +159,48 @@
             
             $(window).keydown(function(e){
                 var code = e.which;
-                if(code == 8){
-                    e.preventDefault();
-                    $(".terminal .command:last-child").text(function(i,s){
-                        return s.slice(0,-1);
-                    });
+                // if(code == 8){
+                //     e.preventDefault();
+                //     $(".terminal .command:last-child").text(function(i,s){
+                //         return s.slice(0,-1);
+                //     });
+                // }
+                
+                switch(code){
+                    //backspace key
+                    case 8: e.preventDefault();
+                            $(".terminal .command:last-child").text(function(i,s){
+                                return s.slice(0,-1);
+                            });
+                            break;
+                    
+                    //up arrow
+                    case 38:e.preventDefault();
+                            var command = commandStack[ globalCommandCounter ];
+                            if(command){
+                                if(globalCommandCounter == 0) globalCommandCounter = 0;
+                                else globalCommandCounter--;
+                                $(".terminal .command:last-child").text(command);
+                            }
+                            break;
+                            
+                    //down arrow
+                    case 40:e.preventDefault();
+                            var command = commandStack[ globalCommandCounter ];
+                            if(command){
+                                if(globalCommandCounter == commandStack.length - 1) globalCommandCounter = commandStack.length-1;
+                                else globalCommandCounter++;
+                                $(".terminal .command:last-child").text(command);
+                            }
+                            break;
+                            break;
                 }
             });
             
             function processCmd(cmd){
                 var command = $.trim(cmd);
+                addCommandToStack(command);
+                globalCommandCounter = commandStack.length - 1;
                 var retVal = "";
                 if(command != ""){
                     switch(command){
@@ -208,6 +241,14 @@
                     }
                 }
                 return retVal;
+            }
+            
+            function addCommandToStack(command){
+                var latestCommand = commandStack[ commandStack.length - 1 ];
+                if(latestCommand != 'undefined' && command != '' && latestCommand != command){
+                    commandStack.push(command);
+                }
+                console.log(commandStack);
             }
             
             function getYomamaJoke(){
