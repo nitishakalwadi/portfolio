@@ -114,20 +114,21 @@
             $(function(){
                 var welcometext = ""
                 welcometext += "Welcome to <span class='name'>Nitish Akalwadi</span>'s geeky terminal^2000 <br/><br/>";
-                welcometext += "Use the following commands to know more.<br/>";
-                welcometext += "<pre>";
-                welcometext += "<span class='cmd'>role</span>            : display the roles and reponsibilities I have undertaken<br/>";
-                welcometext += "<span class='cmd'>responsibility</span>  : alias for role<br/>";
-                welcometext += "<span class='cmd'>experience</span>      : display details of my total experience<br/>";
-                welcometext += "<span class='cmd'>education</span>       : display my education details<br/>";
-                welcometext += "<span class='cmd'>projects</span>        : display the details of the projects I have undertaken<br/>";
-                welcometext += "<span class='cmd'>skills</span>          : display details of my skills<br/>";
-                welcometext += "<span class='cmd'>personal</span>        : display my personal details<br/>";
-                welcometext += "<span class='cmd'>download</span>        : download my resume<br/>";
-                welcometext += "<span class='cmd'>clear</span>           : clear screen<br/>";
-                welcometext += "<span class='cmd'>help</span>            : display this help text<br/>";
-                welcometext += "<span class='cmd'>yomama</span>          : display a 'yo mama's so fat' joke<br/><br/>";
-                welcometext += "</pre>";
+                welcometext += "Type '<span class='cmd'>help</span>' to know more<br/>";
+                // welcometext += "Use the following commands to know more.<br/>";
+                // welcometext += "<pre>";
+                // welcometext += "<span class='cmd'>role</span>            : display the roles and reponsibilities I have undertaken<br/>";
+                // welcometext += "<span class='cmd'>responsibility</span>  : alias for role<br/>";
+                // welcometext += "<span class='cmd'>experience</span>      : display details of my total experience<br/>";
+                // welcometext += "<span class='cmd'>education</span>       : display my education details<br/>";
+                // welcometext += "<span class='cmd'>projects</span>        : display the details of the projects I have undertaken<br/>";
+                // welcometext += "<span class='cmd'>skills</span>          : display details of my skills<br/>";
+                // welcometext += "<span class='cmd'>personal</span>        : display my personal details<br/>";
+                // welcometext += "<span class='cmd'>download</span>        : download my resume<br/>";
+                // welcometext += "<span class='cmd'>clear</span>           : clear screen<br/>";
+                // welcometext += "<span class='cmd'>help</span>            : display this help text<br/>";
+                // welcometext += "<span class='cmd'>yomama</span>          : display a 'yo mama's so fat' joke<br/><br/>";
+                // welcometext += "</pre>";
                 welcometext += "press enter to continue.";
                 
                 $(".message").typed({
