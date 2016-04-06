@@ -1,8 +1,8 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledBlueprints',
-    'timestamp' => 1456398837,
-    'checksum' => 'b32aad6beef16bce637fcd3e3a621c1e',
+    'timestamp' => 1459939807,
+    'checksum' => '0f7b8dc9dd198fa64cd8e4c78f0277fd',
     'files' => [
         'system/blueprints/config' => [
             'media' => [
@@ -23,13 +23,13 @@ return [
             ]
         ],
         'user/plugins' => [
-            'plugins/error' => [
-                'file' => 'user/plugins/error/blueprints.yaml',
-                'modified' => 1452112931
-            ],
             'plugins/problems' => [
                 'file' => 'user/plugins/problems/blueprints.yaml',
                 'modified' => 1452112927
+            ],
+            'plugins/error' => [
+                'file' => 'user/plugins/error/blueprints.yaml',
+                'modified' => 1452112931
             ]
         ]
     ],
@@ -38,35 +38,6 @@ return [
             'plugins' => [
                 'type' => '_parent',
                 'name' => 'plugins'
-            ],
-            'plugins.error' => [
-                'type' => '_parent',
-                'name' => 'plugins.error'
-            ],
-            'plugins.error.enabled' => [
-                'type' => 'toggle',
-                'label' => 'Plugin status',
-                'highlight' => 1,
-                'default' => 0,
-                'options' => [
-                    1 => 'Enabled',
-                    0 => 'Disabled'
-                ],
-                'validate' => [
-                    'type' => 'bool'
-                ],
-                'name' => 'plugins.error.enabled'
-            ],
-            'plugins.error.routes' => [
-                'type' => '_parent',
-                'name' => 'plugins.error.routes'
-            ],
-            'plugins.error.routes.404' => [
-                'type' => 'text',
-                'size' => 'medium',
-                'label' => '404 Route',
-                'default' => '/error',
-                'name' => 'plugins.error.routes.404'
             ],
             'plugins.problems' => [
                 'type' => '_parent',
@@ -99,6 +70,35 @@ return [
                     'type' => 'bool'
                 ],
                 'name' => 'plugins.problems.built_in_css'
+            ],
+            'plugins.error' => [
+                'type' => '_parent',
+                'name' => 'plugins.error'
+            ],
+            'plugins.error.enabled' => [
+                'type' => 'toggle',
+                'label' => 'Plugin status',
+                'highlight' => 1,
+                'default' => 0,
+                'options' => [
+                    1 => 'Enabled',
+                    0 => 'Disabled'
+                ],
+                'validate' => [
+                    'type' => 'bool'
+                ],
+                'name' => 'plugins.error.enabled'
+            ],
+            'plugins.error.routes' => [
+                'type' => '_parent',
+                'name' => 'plugins.error.routes'
+            ],
+            'plugins.error.routes.404' => [
+                'type' => 'text',
+                'size' => 'medium',
+                'label' => '404 Route',
+                'default' => '/error',
+                'name' => 'plugins.error.routes.404'
             ],
             'site' => [
                 'type' => '_parent',
@@ -1259,15 +1259,15 @@ return [
         ],
         'nested' => [
             'plugins' => [
+                'problems' => [
+                    'enabled' => 'plugins.problems.enabled',
+                    'built_in_css' => 'plugins.problems.built_in_css'
+                ],
                 'error' => [
                     'enabled' => 'plugins.error.enabled',
                     'routes' => [
                         404 => 'plugins.error.routes.404'
                     ]
-                ],
-                'problems' => [
-                    'enabled' => 'plugins.problems.enabled',
-                    'built_in_css' => 'plugins.problems.built_in_css'
                 ]
             ],
             'site' => [
