@@ -28,7 +28,6 @@ class SimplePageHandler extends Handler
         $cssFile      = $this->getResource("error.css");
 
         $code = $inspector->getException()->getCode();
-        $message = $inspector->getException()->getMessage();
 
         if ($inspector->getException() instanceof \ErrorException) {
             $code = Misc::translateErrorCode($code);
@@ -37,7 +36,6 @@ class SimplePageHandler extends Handler
         $vars = array(
             "stylesheet" => file_get_contents($cssFile),
             "code"        => $code,
-            "message"     => $message,
         );
 
         $helper->setVariables($vars);

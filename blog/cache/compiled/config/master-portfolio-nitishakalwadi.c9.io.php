@@ -1,356 +1,135 @@
 <?php
 return [
-    '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1460707335,
-    'checksum' => '1d46680c0b7a76c099ec21c2d39932c8',
-    'files' => [
-        'user/config' => [
-            'media' => [
-                'file' => 'user/config/media.yaml',
-                'modified' => 1460702165
-            ],
-            'plugins/email' => [
-                'file' => 'user/config/plugins/email.yaml',
-                'modified' => 1456923673
-            ],
-            'plugins/highlight' => [
-                'file' => 'user/config/plugins/highlight.yaml',
-                'modified' => 1460706049
-            ],
-            'plugins/jscomments' => [
-                'file' => 'user/config/plugins/jscomments.yaml',
-                'modified' => 1456923673
-            ],
-            'plugins/materializer' => [
-                'file' => 'user/config/plugins/materializer.yaml',
-                'modified' => 1460706894
-            ],
-            'plugins/relatedpages' => [
-                'file' => 'user/config/plugins/relatedpages.yaml',
-                'modified' => 1456923674
-            ],
-            'security' => [
-                'file' => 'user/config/security.yaml',
-                'modified' => 1456923717
-            ],
-            'site' => [
-                'file' => 'user/config/site.yaml',
-                'modified' => 1460642541
-            ],
-            'streams' => [
-                'file' => 'user/config/streams.yaml',
-                'modified' => 1460702165
-            ],
-            'system' => [
-                'file' => 'user/config/system.yaml',
-                'modified' => 1460702159
-            ]
-        ],
-        'system/config' => [
-            'media' => [
-                'file' => 'system/config/media.yaml',
-                'modified' => 1456923692
-            ],
-            'site' => [
-                'file' => 'system/config/site.yaml',
-                'modified' => 1459961926
-            ],
-            'streams' => [
-                'file' => 'system/config/streams.yaml',
-                'modified' => 1456923693
-            ],
-            'system' => [
-                'file' => 'system/config/system.yaml',
-                'modified' => 1460705838
-            ]
-        ],
-        'user/plugins' => [
-            'plugins/simplesearch' => [
-                'file' => 'user/plugins/simplesearch/simplesearch.yaml',
-                'modified' => 1456923608
-            ],
-            'plugins/comments' => [
-                'file' => 'user/plugins/comments/comments.yaml',
-                'modified' => 1459940510
-            ],
-            'plugins/pagination' => [
-                'file' => 'user/plugins/pagination/pagination.yaml',
-                'modified' => 1456923612
-            ],
-            'plugins/taxonomylist' => [
-                'file' => 'user/plugins/taxonomylist/taxonomylist.yaml',
-                'modified' => 1456923607
-            ],
-            'plugins/login' => [
-                'file' => 'user/plugins/login/login.yaml',
-                'modified' => 1460702155
-            ],
-            'plugins/email' => [
-                'file' => 'user/plugins/email/email.yaml',
-                'modified' => 1460702152
-            ],
-            'plugins/feed' => [
-                'file' => 'user/plugins/feed/feed.yaml',
-                'modified' => 1456923614
-            ],
-            'plugins/form' => [
-                'file' => 'user/plugins/form/form.yaml',
-                'modified' => 1460702148
-            ],
-            'plugins/problems' => [
-                'file' => 'user/plugins/problems/problems.yaml',
-                'modified' => 1456923611
-            ],
-            'plugins/admin' => [
-                'file' => 'user/plugins/admin/admin.yaml',
-                'modified' => 1460702159
-            ],
-            'plugins/highlight' => [
-                'file' => 'user/plugins/highlight/highlight.yaml',
-                'modified' => 1460707284
-            ],
-            'plugins/archives' => [
-                'file' => 'user/plugins/archives/archives.yaml',
-                'modified' => 1456923654
-            ],
-            'plugins/error' => [
-                'file' => 'user/plugins/error/error.yaml',
-                'modified' => 1456923616
-            ],
-            'plugins/relatedpages' => [
-                'file' => 'user/plugins/relatedpages/relatedpages.yaml',
-                'modified' => 1456923610
-            ]
-        ]
-    ],
+    '@class' => 'Grav\\Common\\Config\\Config',
+    'timestamp' => 1456399214,
+    'checksum' => '2821752b076c60f272e132cfd2fae7a9',
     'data' => [
-        'plugins' => [
-            'simplesearch' => [
-                'enabled' => true,
-                'built_in_css' => true,
-                'route' => '/search',
-                'template' => 'simplesearch_results',
-                'filters' => [
-                    'category' => 'blog'
-                ],
-                'filter_combinator' => 'and',
-                'order' => [
-                    'by' => 'date',
-                    'dir' => 'desc'
-                ]
-            ],
-            'comments' => [
-                'enabled' => true,
-                'enable_on_routes' => [
-                    0 => '/blog'
-                ],
-                'disable_on_routes' => [
-                    0 => '/blog/blog-post-to-ignore',
-                    1 => '/ignore-this-route'
-                ],
-                'form' => [
-                    'name' => 'comments',
-                    'fields' => [
-                        0 => [
-                            'name' => 'name',
-                            'label' => 'Name',
-                            'placeholder' => 'Enter your name',
-                            'autocomplete' => 'on',
-                            'type' => 'text',
-                            'validate' => [
-                                'required' => true
-                            ]
-                        ],
-                        1 => [
-                            'name' => 'email',
-                            'label' => 'Email',
-                            'placeholder' => 'Enter your email address',
-                            'type' => 'email',
-                            'validate' => [
-                                'required' => true
-                            ]
-                        ],
-                        2 => [
-                            'name' => 'text',
-                            'label' => 'Message',
-                            'placeholder' => 'Enter your message',
-                            'type' => 'textarea',
-                            'validate' => [
-                                'required' => true
-                            ]
-                        ],
-                        3 => [
-                            'name' => 'date',
-                            'type' => 'hidden',
-                            'process' => [
-                                'fillWithCurrentDateTime' => true
-                            ]
-                        ],
-                        4 => [
-                            'name' => 'title',
-                            'type' => 'hidden',
-                            'evaluateDefault' => 'grav.page.header.title'
-                        ],
-                        5 => [
-                            'name' => 'lang',
-                            'type' => 'hidden',
-                            'evaluateDefault' => 'grav.language.getLanguage'
-                        ],
-                        6 => [
-                            'name' => 'path',
-                            'type' => 'hidden',
-                            'evaluateDefault' => 'grav.uri.path'
-                        ],
-                        7 => [
-                            'name' => 'g-recaptcha-response',
-                            'label' => 'Captcha',
-                            'type' => 'captcha',
-                            'recatpcha_site_key' => '6Lc-tBwTAAAAADlB_1PlLoo-wVoX8B7fRnUnD1tN',
-                            'recaptcha_not_validated' => 'Captcha not valid!',
-                            'validate' => [
-                                'required' => true
-                            ],
-                            'process' => [
-                                'ignore' => true
-                            ]
-                        ]
-                    ],
-                    'buttons' => [
-                        0 => [
-                            'type' => 'submit',
-                            'value' => 'Submit'
-                        ]
-                    ],
-                    'process' => [
-                        0 => [
-                            'email' => [
-                                'subject' => '[New Comment] from {{ form.value.name|e }}',
-                                'body' => '{% include \'forms/data.html.twig\' %}'
-                            ]
-                        ],
-                        1 => [
-                            'captcha' => [
-                                'recatpcha_secret' => '6Lc-tBwTAAAAAPXok4XZNVuxoMTPbpkYKhWwCJKD'
-                            ]
-                        ],
-                        2 => [
-                            'addComment' => NULL
-                        ],
-                        3 => [
-                            'message' => 'Thank you for writing your comment!'
+        'streams' => [
+            'schemes' => [
+                'system' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'system'
                         ]
                     ]
+                ],
+                'user' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user'
+                        ]
+                    ]
+                ],
+                'blueprints' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user://blueprints',
+                            1 => 'system/blueprints'
+                        ]
+                    ]
+                ],
+                'config' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user://config',
+                            1 => 'system/config'
+                        ]
+                    ]
+                ],
+                'plugins' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user://plugins'
+                        ]
+                    ]
+                ],
+                'plugin' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user://plugins'
+                        ]
+                    ]
+                ],
+                'themes' => [
+                    'type' => 'ReadOnlyStream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'user://themes'
+                        ]
+                    ]
+                ],
+                'cache' => [
+                    'type' => 'Stream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'cache'
+                        ],
+                        'images' => [
+                            0 => 'images'
+                        ]
+                    ]
+                ],
+                'log' => [
+                    'type' => 'Stream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'logs'
+                        ]
+                    ]
+                ],
+                'backup' => [
+                    'type' => 'Stream',
+                    'prefixes' => [
+                        '' => [
+                            0 => 'backup'
+                        ]
+                    ]
+                ],
+                'asset' => [
+                    'type' => 'ReadOnlyStream',
+                    'paths' => [
+                        0 => 'assets'
+                    ]
+                ],
+                'image' => [
+                    'type' => 'ReadOnlyStream',
+                    'paths' => [
+                        0 => 'user://images',
+                        1 => 'system://images'
+                    ]
+                ],
+                'page' => [
+                    'type' => 'ReadOnlyStream',
+                    'paths' => [
+                        0 => 'user://pages'
+                    ]
+                ],
+                'account' => [
+                    'type' => 'ReadOnlyStream',
+                    'paths' => [
+                        0 => 'user://accounts'
+                    ]
+                ]
+            ]
+        ],
+        'plugins' => [
+            'error' => [
+                'enabled' => true,
+                'routes' => [
+                    404 => '/error'
                 ]
             ],
             'pagination' => [
                 'enabled' => true,
+                'path' => '/blog',
                 'built_in_css' => true,
                 'delta' => 0
-            ],
-            'taxonomylist' => [
-                'enabled' => true,
-                'route' => '/blog'
-            ],
-            'login' => [
-                'enabled' => true,
-                'built_in_css' => true,
-                'route' => false,
-                'route_register' => false,
-                'route_activate' => '/activate_user',
-                'route_forgot' => '/forgot_password',
-                'route_reset' => '/reset_password',
-                'redirect' => NULL,
-                'parent_acl' => false,
-                'user_registration' => [
-                    'enabled' => true,
-                    'fields' => [
-                        0 => 'username',
-                        1 => 'password',
-                        2 => 'email',
-                        3 => 'fullname',
-                        4 => 'title',
-                        5 => 'access',
-                        6 => 'state'
-                    ],
-                    'additional_params' => [
-                        'access' => 'site.login'
-                    ],
-                    'options' => [
-                        'validate_password1_and_password2' => true,
-                        'set_user_disabled' => false,
-                        'login_after_registration' => true,
-                        'send_activation_email' => false,
-                        'send_notification_email' => false,
-                        'send_welcome_email' => false
-                    ]
-                ],
-                'rememberme' => [
-                    'enabled' => true,
-                    'timeout' => 1800,
-                    'name' => 'grav-rememberme'
-                ],
-                'oauth' => [
-                    'enabled' => false,
-                    'user' => [
-                        'autocreate' => false,
-                        'access' => [
-                            'site' => [
-                                'login' => true
-                            ]
-                        ]
-                    ],
-                    'providers' => [
-                        'Facebook' => [
-                            'enabled' => false,
-                            'credentials' => [
-                                'key' => NULL,
-                                'secret' => NULL
-                            ]
-                        ],
-                        'Google' => [
-                            'enabled' => false,
-                            'credentials' => [
-                                'key' => NULL,
-                                'secret' => NULL
-                            ]
-                        ],
-                        'GitHub' => [
-                            'enabled' => false,
-                            'credentials' => [
-                                'key' => NULL,
-                                'secret' => NULL
-                            ]
-                        ],
-                        'Twitter' => [
-                            'enabled' => false,
-                            'credentials' => [
-                                'key' => NULL,
-                                'secret' => NULL
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'email' => [
-                'enabled' => true,
-                'from' => 'your@email.here',
-                'from_name' => NULL,
-                'to' => 'your@email.here',
-                'to_name' => NULL,
-                'mailer' => [
-                    'engine' => 'mail',
-                    'smtp' => [
-                        'server' => 'localhost',
-                        'port' => 25,
-                        'encryption' => 'none',
-                        'user' => '',
-                        'password' => ''
-                    ],
-                    'sendmail' => [
-                        'bin' => '/usr/sbin/sendmail'
-                    ]
-                ],
-                'content_type' => 'text/html'
             ],
             'feed' => [
                 'enabled' => true,
@@ -359,158 +138,184 @@ return [
                 'lang' => 'en-us',
                 'length' => 500
             ],
-            'form' => [
-                'enabled' => true,
-                'files' => [
-                    'multiple' => false,
-                    'destination' => '@self',
-                    'accept' => [
-                        0 => 'image/*'
-                    ]
-                ]
-            ],
             'problems' => [
                 'enabled' => true,
                 'built_in_css' => true
+            ]
+        ],
+        'system' => [
+            'absolute_urls' => false,
+            'timezone' => '',
+            'param_sep' => ':',
+            'home' => [
+                'alias' => '/blog'
             ],
-            'admin' => [
-                'enabled' => true,
-                'route' => '/admin',
-                'theme' => 'grav',
-                'dashboard' => [
-                    'days_of_stats' => 7
-                ],
-                'session' => [
-                    'timeout' => 1800
-                ],
-                'warnings' => [
-                    'delete_page' => true
-                ],
-                'edit_mode' => 'normal',
-                'show_github_msg' => true,
-                'google_fonts' => true,
-                'enable_auto_updates_check' => true,
-                'popularity' => [
-                    'enabled' => true,
-                    'ignore' => [
-                        0 => '/test*',
-                        1 => '/modular'
-                    ],
-                    'history' => [
-                        'daily' => 30,
-                        'monthly' => 12,
-                        'visitors' => 20
-                    ]
-                ]
-            ],
-            'highlight' => [
-                'enabled' => true,
-                'theme' => 'default'
-            ],
-            'archives' => [
-                'enabled' => true,
-                'built_in_css' => true,
-                'date_display_format' => 'F Y',
-                'show_count' => true,
-                'limit' => 12,
+            'pages' => [
+                'theme' => 'notepad',
                 'order' => [
-                    'by' => 'date',
-                    'dir' => 'desc'
+                    'by' => 'default',
+                    'dir' => 'asc'
                 ],
-                'filter_combinator' => 'and',
-                'filters' => [
-                    'category' => 'blog'
-                ]
-            ],
-            'error' => [
-                'enabled' => true,
-                'routes' => [
-                    404 => '/error'
-                ]
-            ],
-            'relatedpages' => [
-                'enabled' => true,
-                'limit' => 4,
-                'show_score' => false,
-                'score_threshold' => 20,
-                'filter' => [
-                    'items' => [
-                        '@page' => '/blog'
-                    ],
-                    'order' => [
-                        'by' => 'date',
-                        'dir' => 'desc'
+                'list' => [
+                    'count' => 20
+                ],
+                'dateformat' => [
+                    'short' => 'jS M Y',
+                    'long' => 'F jS \\a\\t g:ia'
+                ],
+                'publish_dates' => true,
+                'process' => [
+                    'markdown' => true,
+                    'twig' => false
+                ],
+                'events' => [
+                    'page' => true,
+                    'twig' => true
+                ],
+                'markdown' => [
+                    'extra' => false,
+                    'auto_line_breaks' => false,
+                    'auto_url_links' => false,
+                    'escape_markup' => false,
+                    'special_chars' => [
+                        '>' => 'gt',
+                        '<' => 'lt'
                     ]
                 ],
-                'page_in_filter' => true,
-                'explicit_pages' => [
-                    'process' => true,
-                    'score' => 100
-                ],
-                'taxonomy_match' => [
-                    'taxonomy' => 'tag',
-                    'taxonomy_taxonomy' => [
-                        'process' => true,
-                        'score_scale' => [
-                            1 => 50,
-                            2 => 75,
-                            3 => 100
-                        ]
-                    ],
-                    'taxonomy_content' => [
-                        'process' => true,
-                        'score_scale' => [
-                            1 => 20,
-                            2 => 30,
-                            3 => 45,
-                            4 => 60,
-                            5 => 70,
-                            6 => 80,
-                            7 => 90,
-                            8 => 100
-                        ]
-                    ]
-                ],
-                'content_match' => [
-                    'process' => true
-                ]
+                'types' => 'txt|xml|html|json|rss|atom',
+                'expires' => 0,
+                'markdown_extra' => false
             ],
-            'jscomments' => [
+            'cache' => [
                 'enabled' => true,
-                'provider' => '',
-                'providers' => [
-                    'disqus' => [
-                        'shortname' => '',
-                        'default_lang' => 'en'
-                    ],
-                    'intensedebate' => [
-                        'acct' => ''
-                    ],
-                    'facebook' => [
-                        'appId' => '',
-                        'lang' => 'en_US',
-                        'num_posts' => 5,
-                        'colorscheme' => 'light',
-                        'order_by' => 'social',
-                        'width' => '100%'
-                    ],
-                    'muut' => [
-                        'forum' => '',
-                        'channel' => 'General',
-                        'show_online' => false,
-                        'show_title' => false,
-                        'upload' => false,
-                        'share' => true,
-                        'widget' => false,
-                        'lang' => 'en'
-                    ]
+                'check' => [
+                    'method' => 'file'
+                ],
+                'driver' => 'auto',
+                'prefix' => 'g',
+                'lifetime' => 604800,
+                'gzip' => false
+            ],
+            'twig' => [
+                'cache' => true,
+                'debug' => true,
+                'auto_reload' => true,
+                'autoescape' => false,
+                'undefined_functions' => true,
+                'undefined_filters' => true
+            ],
+            'assets' => [
+                'css_pipeline' => false,
+                'css_minify' => true,
+                'css_minify_windows' => false,
+                'css_rewrite' => true,
+                'js_pipeline' => false,
+                'js_minify' => true,
+                'enable_asset_timestamp' => false,
+                'collections' => [
+                    'jquery' => 'system://assets/jquery/jquery-2.1.3.min.js'
                 ]
             ],
-            'materializer' => [
+            'errors' => [
+                'display' => true,
+                'log' => true
+            ],
+            'debugger' => [
                 'enabled' => false,
-                'always_load' => false,
-                'load_css' => true,
-                'load_js' => true
+                'twig' => true,
+                'shutdown' => [
+                    'close_connection' => true
+                ]
+            ],
+            'images' => [
+                'default_image_quality' => 85,
+                'debug' => false
+            ],
+            'media' => [
+                'enable_media_timestamp' => false,
+                'upload_limit' => 0
+            ],
+            'security' => [
+                'default_hash' => '$2y$10$kwsyMVwM8/7j0K/6LHT.g.Fs49xOCTp2b8hh/S5.dPJuJcJB6T.UK'
+            ]
+        ],
+        'site' => [
+            'title' => 'G for Geek',
+            'author' => [
+                'name' => 'Nitish Akalwadi',
+                'email' => 'nitish_akalwadi@yahoo.co.in'
+            ],
+            'taxonomies' => [
+                0 => 'tag'
+            ],
+            'blog' => [
+                'route' => '/blog'
+            ],
+            'metadata' => [
+                'description' => 'Technology blog by Nitish Akalwadi'
+            ],
+            'summary' => [
+                'enabled' => true,
+                'format' => 'short',
+                'size' => 300,
+                'delimiter' => '==='
+            ],
+            'routes' => [
+                '/something/else' => '/blog/sample-3',
+                '/another/one/here' => '/blog/sample-3',
+                '/new/*' => '/blog/*'
+            ],
+            'description' => 'Be Techno Hungry',
+            'owner' => [
+                'name' => 'Nitish Akalwadi',
+                'email' => 'nitish_akalwadi@yahoo.co.in',
+                'description' => 'Awesome Dude, Awesome Life',
+                'twitter' => NULL,
+                'facebook' => NULL,
+                'github' => NULL,
+                'instagram' => NULL,
+                'google_plus' => NULL
+            ],
+            'logo' => '/user/themes/notepad/images/logo.png',
+            'google_analytics' => NULL,
+            'google_verify' => NULL,
+            'bing_verify' => NULL,
+            'links' => [
+                0 => [
+                    'title' => 'Featured Posts',
+                    'url' => '/featured'
+                ],
+                1 => [
+                    'title' => 'Categories',
+                    'url' => '/categories'
+                ],
+                2 => [
+                    'title' => 'About',
+                    'url' => '/about'
+                ]
+            ],
+            'include' => [
+                0 => '.htaccess'
+            ],
+            'exclude' => [
+                0 => 'lib',
+                1 => 'config.rb',
+                2 => 'Gemfile',
+                3 => 'Capfile',
+                4 => 'Gemfile.lock',
+                5 => 'config',
+                6 => 'log',
+                7 => 'Rakefile',
+                8 => 'Rakefile.rb',
+                9 => 'tmp',
+                10 => 'less',
+                11 => '*.sublime-project',
+                12 => '*.sublime-workspace',
+                13 => 'test',
+                14 => 'spec',
+                15 => 'Gruntfile.js',
+                16 => 'package.json',
+                17 => 'node_modules'
             ]
         ],
         'media' => [
@@ -527,11 +332,6 @@ return [
                 ]
             ],
             'jpg' => [
-                'type' => 'image',
-                'thumb' => 'media/thumb-jpg.png',
-                'mime' => 'image/jpeg'
-            ],
-            'jpe' => [
                 'type' => 'image',
                 'thumb' => 'media/thumb-jpg.png',
                 'mime' => 'image/jpeg'
@@ -606,111 +406,17 @@ return [
                 'thumb' => 'media/thumb-wav.png',
                 'mime' => 'audio/wav'
             ],
-            'aiff' => [
-                'type' => 'audio',
-                'mime' => 'audio/aiff'
-            ],
-            'aif' => [
-                'type' => 'audio',
-                'mime' => 'audio/aif'
-            ],
             'txt' => [
                 'type' => 'file',
                 'thumb' => 'media/thumb-txt.png',
                 'mime' => 'text/plain'
-            ],
-            'xml' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-xml.png',
-                'mime' => 'application/xml'
             ],
             'doc' => [
                 'type' => 'file',
                 'thumb' => 'media/thumb-doc.png',
                 'mime' => 'application/msword'
             ],
-            'docx' => [
-                'type' => 'file',
-                'mime' => 'application/msword'
-            ],
-            'xls' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xlt' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xlm' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xld' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xla' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xlc' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xlw' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'xll' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-excel'
-            ],
-            'ppt' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-powerpoint'
-            ],
-            'pps' => [
-                'type' => 'file',
-                'mime' => 'application/vnd.ms-powerpoint'
-            ],
-            'rtf' => [
-                'type' => 'file',
-                'mime' => 'application/rtf'
-            ],
-            'bmp' => [
-                'type' => 'file',
-                'mime' => 'image/bmp'
-            ],
-            'tiff' => [
-                'type' => 'file',
-                'mime' => 'image/tiff'
-            ],
-            'mpeg' => [
-                'type' => 'file',
-                'mime' => 'video/mpeg'
-            ],
-            'mpg' => [
-                'type' => 'file',
-                'mime' => 'video/mpeg'
-            ],
-            'mpe' => [
-                'type' => 'file',
-                'mime' => 'video/mpeg'
-            ],
-            'avi' => [
-                'type' => 'file',
-                'mime' => 'video/msvideo'
-            ],
-            'wmv' => [
-                'type' => 'file',
-                'mime' => 'video/x-ms-wmv'
-            ],
             'html' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-html.png',
-                'mime' => 'text/html'
-            ],
-            'htm' => [
                 'type' => 'file',
                 'thumb' => 'media/thumb-html.png',
                 'mime' => 'text/html'
@@ -725,243 +431,11 @@ return [
                 'thumb' => 'media/thumb-zip.png',
                 'mime' => 'application/zip'
             ],
-            '7z' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-7zip.png',
-                'mime' => 'application/x-7z-compressed'
-            ],
             'gz' => [
                 'type' => 'file',
                 'thumb' => 'media/thumb-gz.png',
                 'mime' => 'application/gzip'
-            ],
-            'tar' => [
-                'type' => 'file',
-                'mime' => 'application/x-tar'
-            ],
-            'css' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-css.png',
-                'mime' => 'text/css'
-            ],
-            'js' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-js.png',
-                'mime' => 'application/javascript'
-            ],
-            'json' => [
-                'type' => 'file',
-                'thumb' => 'media/thumb-json.png',
-                'mime' => 'application/json'
             ]
-        ],
-        'site' => [
-            'title' => 'Nitish\'s Blog',
-            'author' => [
-                'name' => 'Nitishkumar Akalwadi',
-                'email' => 'nitish_akalwadi@yahoo.co.incididunt',
-                'url' => 'http://nitishakalwadi.tk',
-                'logo' => NULL,
-                'gravatar' => NULL,
-                'description' => ''
-            ],
-            'taxonomies' => [
-                0 => 'category',
-                1 => 'tag',
-                2 => 'month'
-            ],
-            'metadata' => [
-                'description' => ''
-            ],
-            'summary' => [
-                'enabled' => true,
-                'format' => 'short',
-                'size' => 300,
-                'delimiter' => '==='
-            ],
-            'redirects' => NULL,
-            'routes' => NULL,
-            'blog' => [
-                'route' => ''
-            ],
-            'description' => 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-            'menu' => NULL
-        ],
-        'streams' => [
-            'schemes' => [
-                'image' => [
-                    'type' => 'ReadOnlyStream',
-                    'paths' => [
-                        0 => 'user://images',
-                        1 => 'system://images'
-                    ]
-                ],
-                'page' => [
-                    'type' => 'ReadOnlyStream',
-                    'paths' => [
-                        0 => 'user://pages'
-                    ]
-                ],
-                'account' => [
-                    'type' => 'ReadOnlyStream',
-                    'paths' => [
-                        0 => 'user://accounts'
-                    ]
-                ]
-            ]
-        ],
-        'system' => [
-            'absolute_urls' => false,
-            'timezone' => '',
-            'default_locale' => NULL,
-            'param_sep' => ':',
-            'wrapped_site' => false,
-            'reverse_proxy_setup' => false,
-            'proxy_url' => NULL,
-            'languages' => [
-                'supported' => [
-                    
-                ],
-                'include_default_lang' => true,
-                'translations' => true,
-                'translations_fallback' => true,
-                'session_store_active' => false,
-                'http_accept_language' => false,
-                'override_locale' => false
-            ],
-            'home' => [
-                'alias' => '/blog',
-                'hide_in_urls' => false
-            ],
-            'pages' => [
-                'theme' => 'pinpress',
-                'order' => [
-                    'by' => 'default',
-                    'dir' => 'asc'
-                ],
-                'list' => [
-                    'count' => 20
-                ],
-                'dateformat' => [
-                    'default' => NULL,
-                    'short' => 'jS M Y',
-                    'long' => 'F jS \\a\\t g:ia'
-                ],
-                'publish_dates' => true,
-                'process' => [
-                    'markdown' => true,
-                    'twig' => false
-                ],
-                'twig_first' => false,
-                'events' => [
-                    'page' => true,
-                    'twig' => true
-                ],
-                'markdown' => [
-                    'extra' => true,
-                    'auto_line_breaks' => false,
-                    'auto_url_links' => false,
-                    'escape_markup' => false,
-                    'special_chars' => [
-                        '>' => 'gt',
-                        '<' => 'lt'
-                    ]
-                ],
-                'types' => [
-                    0 => 'txt',
-                    1 => 'xml',
-                    2 => 'html',
-                    3 => 'htm',
-                    4 => 'json',
-                    5 => 'rss',
-                    6 => 'atom'
-                ],
-                'append_url_extension' => '',
-                'expires' => 604800,
-                'last_modified' => false,
-                'etag' => false,
-                'vary_accept_encoding' => false,
-                'redirect_default_route' => false,
-                'redirect_default_code' => 301,
-                'redirect_trailing_slash' => true,
-                'ignore_files' => [
-                    0 => '.DS_Store'
-                ],
-                'ignore_folders' => [
-                    0 => '.git',
-                    1 => '.idea'
-                ],
-                'ignore_hidden' => true,
-                'url_taxonomy_filters' => true
-            ],
-            'cache' => [
-                'enabled' => false,
-                'check' => [
-                    'method' => 'file'
-                ],
-                'driver' => 'auto',
-                'prefix' => 'g',
-                'lifetime' => 604800,
-                'gzip' => false
-            ],
-            'twig' => [
-                'cache' => true,
-                'debug' => true,
-                'auto_reload' => true,
-                'autoescape' => false,
-                'undefined_functions' => true,
-                'undefined_filters' => true,
-                'umask_fix' => false
-            ],
-            'assets' => [
-                'css_pipeline' => false,
-                'css_minify' => true,
-                'css_minify_windows' => false,
-                'css_rewrite' => true,
-                'js_pipeline' => false,
-                'js_minify' => true,
-                'enable_asset_timestamp' => false,
-                'collections' => [
-                    'jquery' => 'system://assets/jquery/jquery-2.x.min.js'
-                ]
-            ],
-            'errors' => [
-                'display' => false,
-                'log' => true
-            ],
-            'debugger' => [
-                'enabled' => false,
-                'shutdown' => [
-                    'close_connection' => true
-                ],
-                'twig' => true
-            ],
-            'images' => [
-                'default_image_quality' => 85,
-                'cache_all' => false,
-                'cache_perms' => '0755',
-                'debug' => false
-            ],
-            'media' => [
-                'enable_media_timestamp' => false,
-                'upload_limit' => 0,
-                'unsupported_inline_types' => [
-                    
-                ],
-                'allowed_fallback_types' => [
-                    
-                ]
-            ],
-            'session' => [
-                'enabled' => true,
-                'timeout' => 1800,
-                'name' => 'grav-site',
-                'secure' => false,
-                'httponly' => true
-            ]
-        ],
-        'security' => [
-            'salt' => 'xwCVbkvjYyU5Hh'
         ]
     ]
 ];

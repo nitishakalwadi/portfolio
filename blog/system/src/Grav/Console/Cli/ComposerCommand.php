@@ -1,16 +1,23 @@
 <?php
 namespace Grav\Console\Cli;
 
-use Grav\Console\ConsoleCommand;
+use Grav\Console\ConsoleTrait;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ComposerCommand
  * @package Grav\Console\Cli
  */
-class ComposerCommand extends ConsoleCommand
+class ComposerCommand extends Command
 {
+    use ConsoleTrait;
+
     /**
      * @var
      */
@@ -47,24 +54,27 @@ class ComposerCommand extends ConsoleCommand
                 InputOption::VALUE_NONE,
                 'update the dependencies'
             )
-            ->setDescription("Updates the composer vendor dependencies needed by Grav.")
-            ->setHelp('The <info>composer</info> command updates the composer vendor dependencies needed by Grav');
+            ->setDescription("Updates the composer vendordependencies needed by Grav.")
+            ->setHelp('The <info>composer</info> command updates the composer vendordependencies needed by Grav');
     }
 
     /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int|null|void
      */
-    protected function serve()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $action = $this->input->getOption('install') ? 'install' : ($this->input->getOption('update') ? 'update' : 'install');
+        $action = 'update';
 
-        if ($this->input->getOption('install')) {
+        if ($input->getOption('install')) {
             $action = 'install';
         }
 
         // Updates composer first
-        $this->output->writeln("\nInstalling vendor dependencies");
-        $this->output->writeln($this->composerUpdate(GRAV_ROOT, $action));
+        $output->writeln("\nInstalling vendor dependencies");
+        $output->writeln($this->composerUpdate(GRAV_ROOT, $action));
     }
 
 }

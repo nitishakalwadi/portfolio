@@ -1,7 +1,7 @@
 <?php
 namespace Grav\Common;
 
-use \Doctrine\Common\Cache as DoctrineCache;
+use \Doctrine\Common\Cache\Cache as DoctrineCache;
 use Grav\Common\Config\Config;
 use Grav\Common\Filesystem\Folder;
 
@@ -16,13 +16,11 @@ use Grav\Common\Filesystem\Folder;
  * MemCacheD
  * FileSystem
  *
- * @author  RocketTheme
+ * @author RocketTheme
  * @license MIT
  */
 class Cache extends Getters
 {
-    use GravTrait;
-
     /**
      * @var string Cache key.
      */
@@ -31,17 +29,12 @@ class Cache extends Getters
     protected $lifetime;
     protected $now;
 
-    /** @var Config $config */
     protected $config;
 
     /**
-     * @var DoctrineCache\CacheProvider
+     * @var DoctrineCache
      */
     protected $driver;
-
-    protected $driver_name;
-
-    protected $driver_setting;
 
     /**
      * @var bool
@@ -51,36 +44,36 @@ class Cache extends Getters
     protected $cache_dir;
 
     protected static $standard_remove = [
-        'cache://twig/',
-        'cache://doctrine/',
-        'cache://compiled/',
-        'cache://validated-',
-        'cache://images',
-        'asset://',
+        'cache/twig/',
+        'cache/doctrine/',
+        'cache/compiled/',
+        'cache/validated-',
+        'images/',
+        'assets/',
     ];
 
     protected static $all_remove = [
-        'cache://',
-        'cache://images',
-        'asset://'
+        'cache/',
+        'images/',
+        'assets/'
     ];
 
     protected static $assets_remove = [
-        'asset://'
+        'assets/'
     ];
 
     protected static $images_remove = [
-        'cache://images'
+        'images/'
     ];
 
     protected static $cache_remove = [
-        'cache://'
+        'cache/'
     ];
 
     /**
      * Constructor
      *
-     * @param Grav $grav
+     * @params Grav $grav
      */
     public function __construct(Grav $grav)
     {
@@ -91,7 +84,6 @@ class Cache extends Getters
      * Initialization that sets a base key and the driver based on configuration settings
      *
      * @param  Grav $grav
-     *
      * @return void
      */
     public function init(Grav $grav)
@@ -107,22 +99,15 @@ class Cache extends Getters
 
         $prefix = $this->config->get('system.cache.prefix');
 
-        $this->enabled = (bool)$this->config->get('system.cache.enabled');
+        $this->enabled = (bool) $this->config->get('system.cache.enabled');
 
         // Cache key allows us to invalidate all cache on configuration changes.
-        $this->key = ($prefix ? $prefix : 'g') . '-' . substr(md5($uri->rootUrl(true) . $this->config->key() . GRAV_VERSION),
-                2, 8);
-
-        $this->driver_setting = $this->config->get('system.cache.driver');
+        $this->key = substr(md5(($prefix ? $prefix : 'g') . $uri->rootUrl(true) . $this->config->key() . GRAV_VERSION), 2, 8);
 
         $this->driver = $this->getCacheDriver();
 
         // Set the cache namespace to our unique key
         $this->driver->setNamespace($this->key);
-
-        // Dump Cache state
-        $grav['debugger']->addMessage('Cache: [' . ($this->enabled ? 'true' : 'false') . '] Setting: [' . $this->driver_setting . '] Driver: [' . $this->driver_name . ']');
-
     }
 
     /**
@@ -130,17 +115,15 @@ class Cache extends Getters
      * If there is no config option for $driver in the config, or it's set to 'auto', it will
      * pick the best option based on which cache extensions are installed.
      *
-     * @return DoctrineCache\CacheProvider  The cache driver to use
+     * @return DoctrineCacheDriver  The cache driver to use
      */
     public function getCacheDriver()
     {
-        $setting = $this->driver_setting;
+        $setting = $this->config->get('system.cache.driver');
         $driver_name = 'file';
 
         if (!$setting || $setting == 'auto') {
-            if (extension_loaded('apcu')) {
-                $driver_name = 'apcu';
-            } elseif (extension_loaded('apc')) {
+            if (extension_loaded('apc')) {
                 $driver_name = 'apc';
             } elseif (extension_loaded('wincache')) {
                 $driver_name = 'wincache';
@@ -151,44 +134,29 @@ class Cache extends Getters
             $driver_name = $setting;
         }
 
-        $this->driver_name = $driver_name;
-
         switch ($driver_name) {
             case 'apc':
-                $driver = new DoctrineCache\ApcCache();
-                break;
-
-            case 'apcu':
-                $driver = new DoctrineCache\ApcuCache();
+                $driver = new \Doctrine\Common\Cache\ApcCache();
                 break;
 
             case 'wincache':
-                $driver = new DoctrineCache\WinCacheCache();
+                $driver = new \Doctrine\Common\Cache\WinCacheCache();
                 break;
 
             case 'xcache':
-                $driver = new DoctrineCache\XcacheCache();
+                $driver = new \Doctrine\Common\Cache\XcacheCache();
                 break;
 
             case 'memcache':
                 $memcache = new \Memcache();
-                $memcache->connect($this->config->get('system.cache.memcache.server', 'localhost'),
-                    $this->config->get('system.cache.memcache.port', 11211));
-                $driver = new DoctrineCache\MemcacheCache();
+                $memcache->connect($this->config->get('system.cache.memcache.server','localhost'),
+                                   $this->config->get('system.cache.memcache.port', 11211));
+                $driver = new \Doctrine\Common\Cache\MemcacheCache();
                 $driver->setMemcache($memcache);
                 break;
 
-            case 'redis':
-                $redis = new \Redis();
-                $redis->connect($this->config->get('system.cache.redis.server', 'localhost'),
-                    $this->config->get('system.cache.redis.port', 6379));
-
-                $driver = new DoctrineCache\RedisCache();
-                $driver->setRedis($redis);
-                break;
-
             default:
-                $driver = new DoctrineCache\FilesystemCache($this->cache_dir);
+                $driver = new \Doctrine\Common\Cache\FilesystemCache($this->cache_dir);
                 break;
         }
 
@@ -199,7 +167,6 @@ class Cache extends Getters
      * Gets a cached entry if it exists based on an id. If it does not exist, it returns false
      *
      * @param  string $id the id of the cached entry
-     *
      * @return object     returns the cached entry, can be any type, or false if doesn't exist
      */
     public function fetch($id)
@@ -214,9 +181,9 @@ class Cache extends Getters
     /**
      * Stores a new cached entry.
      *
-     * @param  string       $id       the id of the cached entry
+     * @param  string $id       the id of the cached entry
      * @param  array|object $data     the data for the cached entry to store
-     * @param  int          $lifetime the lifetime to store the entry in seconds
+     * @param  int $lifetime    the lifetime to store the entry in seconds
      */
     public function save($id, $data, $lifetime = null)
     {
@@ -239,17 +206,17 @@ class Cache extends Getters
     /**
      * Helper method to clear all Grav caches
      *
-     * @param string $remove standard|all|assets-only|images-only|cache-only
+     * @param string $remove    standard|all|assets-only|images-only|cache-only
      *
      * @return array
      */
     public static function clearCache($remove = 'standard')
     {
-        $locator = self::getGrav()['locator'];
+
         $output = [];
         $user_config = USER_DIR . 'config/system.yaml';
 
-        switch ($remove) {
+        switch($remove) {
             case 'all':
                 $remove_paths = self::$all_remove;
                 break;
@@ -267,34 +234,26 @@ class Cache extends Getters
         }
 
 
-        foreach ($remove_paths as $stream) {
-
-            // Convert stream to a real path
-            $path = $locator->findResource($stream, true, true);
-            // Make sure path exists before proceeding, otherwise we would wipe ROOT_DIR
-            if (!$path) {
-                throw new \RuntimeException("Stream '{$stream}' not found", 500);
-            }
+        foreach ($remove_paths as $path) {
 
             $anything = false;
-            $files = glob($path . '/*');
+            $files = glob(ROOT_DIR . $path . '*');
 
-            if (is_array($files)) {
-                foreach ($files as $file) {
-                    if (is_file($file)) {
-                        if (@unlink($file)) {
-                            $anything = true;
-                        }
-                    } elseif (is_dir($file)) {
-                        if (@Folder::delete($file)) {
-                            $anything = true;
-                        }
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    if (@unlink($file)) {
+                        $anything = true;
+                    }
+                } elseif (is_dir($file)) {
+                    if (@Folder::delete($file)) {
+                        $anything = true;
                     }
                 }
             }
 
+
             if ($anything) {
-                $output[] = '<red>Cleared:  </red>' . $path . '/*';
+                $output[] = '<red>Cleared:  </red>' . $path . '*';
             }
         }
 
@@ -312,7 +271,7 @@ class Cache extends Getters
 
 
     /**
-     * Set the cache lifetime programmatically
+     * Set the cache lifetime programatically
      *
      * @param int $future timestamp
      */

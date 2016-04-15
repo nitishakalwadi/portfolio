@@ -1,16 +1,19 @@
 <?php
 namespace Grav\Console\Cli;
 
-use Grav\Console\ConsoleCommand;
 use Grav\Common\Filesystem\Folder;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class SandboxCommand
  * @package Grav\Console\Cli
  */
-class SandboxCommand extends ConsoleCommand
+class SandboxCommand extends Command
 {
     /**
      * @var array
@@ -35,6 +38,8 @@ class SandboxCommand extends ConsoleCommand
     protected $files = array(
         '/.dependencies',
         '/.htaccess',
+        '/nginx.conf',
+        '/web.config',
         '/user/config/site.yaml',
         '/user/config/system.yaml',
     );
@@ -43,19 +48,16 @@ class SandboxCommand extends ConsoleCommand
      * @var array
      */
     protected $mappings = array(
-        '/.editorconfig'        => '/.editorconfig',
-        '/.gitignore'           => '/.gitignore',
-        '/CHANGELOG.md'         => '/CHANGELOG.md',
-        '/LICENSE.txt'          => '/LICENSE.txt',
-        '/README.md'            => '/README.md',
-        '/CONTRIBUTING.md'      => '/CONTRIBUTING.md',
-        '/index.php'            => '/index.php',
-        '/composer.json'        => '/composer.json',
-        '/bin'                  => '/bin',
-        '/system'               => '/system',
-        '/vendor'               => '/vendor',
-        '/webserver-configs'    => '/webserver-configs',
-        '/codeception.yml'      => '/codeception.yml',
+        '/.editorconfig' => '/.editorconfig',
+        '/.gitignore' => '/.gitignore',
+        '/CHANGELOG.md' => '/CHANGELOG.md',
+        '/LICENSE' => '/LICENSE',
+        '/README.md' => '/README.md',
+        '/index.php'     => '/index.php',
+        '/composer.json' => '/composer.json',
+        '/bin'           => '/bin',
+        '/system'        => '/system',
+        '/vendor'        => '/vendor',
     );
 
     /**
@@ -64,8 +66,22 @@ class SandboxCommand extends ConsoleCommand
 
     protected $default_file = "---\ntitle: HomePage\n---\n# HomePage\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor eu felis sed ornare. Sed a mauris venenatis, pulvinar velit vel, dictum enim. Phasellus ac rutrum velit. Nunc lorem purus, hendrerit sit amet augue aliquet, iaculis ultricies nisl. Suspendisse tincidunt euismod risus, quis feugiat arcu tincidunt eget. Nulla eros mi, commodo vel ipsum vel, aliquet congue odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque velit orci, laoreet at adipiscing eu, interdum quis nibh. Nunc a accumsan purus.";
 
+    /**
+     * @var
+     */
     protected $source;
+    /**
+     * @var
+     */
     protected $destination;
+    /**
+     * @var InputInterface $input
+     */
+    protected $input;
+    /**
+     * @var OutputInterface $output
+     */
+    protected $output;
 
     /**
      *
@@ -91,14 +107,24 @@ class SandboxCommand extends ConsoleCommand
     }
 
     /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int|null|void
      */
-    protected function serve()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->destination = $this->input->getArgument('destination');
+        $this->destination = $input->getArgument('destination');
+        $this->input = $input;
+        $this->output = $output;
+
+        // Create a red output option
+        $this->output->getFormatter()->setStyle('red', new OutputFormatterStyle('red'));
+        $this->output->getFormatter()->setStyle('cyan', new OutputFormatterStyle('cyan'));
+        $this->output->getFormatter()->setStyle('magenta', new OutputFormatterStyle('magenta'));
 
         // Symlink the Core Stuff
-        if ($this->input->getOption('symlink')) {
+        if ($input->getOption('symlink')) {
             // Create Some core stuff if it doesn't exist
             $this->createDirectories();
 
@@ -163,7 +189,7 @@ class SandboxCommand extends ConsoleCommand
             $to = $this->destination . $target;
 
             $this->output->writeln('    <cyan>' . $source . '</cyan> <comment>-></comment> ' . $to);
-            @Folder::rcopy($from, $to);
+            Folder::rcopy($from, $to);
         }
     }
 
@@ -255,7 +281,7 @@ class SandboxCommand extends ConsoleCommand
     private function perms()
     {
         $this->output->writeln('');
-        $this->output->writeln('<comment>Permissions Initializing</comment>');
+        $this->output->writeln('<comment>Permisions Initializing</comment>');
 
         $dir_perms = 0755;
 

@@ -3,7 +3,6 @@ namespace Grav\Common\Backup;
 
 use Grav\Common\GravTrait;
 use Grav\Common\Filesystem\Folder;
-use Grav\Common\Inflector;
 
 /**
  * The ZipBackup class lets you create simple zip-backups of a grav site
@@ -23,20 +22,9 @@ class ZipBackup
     ];
 
     protected static $ignoreFolders = [
-        '.git',
-        '.svn',
-        '.hg',
-        '.idea'
+        '.git'
     ];
 
-    /**
-     * Backup
-     *
-     * @param null          $destination
-     * @param callable|null $messager
-     *
-     * @return null|string
-     */
     public static function backup($destination = null, callable $messager = null)
     {
         if (!$destination) {
@@ -50,11 +38,9 @@ class ZipBackup
 
         $name = self::getGrav()['config']->get('site.title', basename(GRAV_ROOT));
 
-        $inflector = new Inflector();
-
         if (is_dir($destination)) {
             $date = date('YmdHis', time());
-            $filename = trim($inflector->hyphenize($name), '-') . '-' . $date . '.zip';
+            $filename = $name . '-' . $date . '.zip';
             $destination = rtrim($destination, DS) . DS . $filename;
         }
 
@@ -71,8 +57,6 @@ class ZipBackup
 
         $zip = new \ZipArchive();
         $zip->open($destination, \ZipArchive::CREATE);
-
-        $max_execution_time = ini_set('max_execution_time', 600);
 
         static::folderToZip(GRAV_ROOT, $zip, strlen(rtrim(GRAV_ROOT, DS) . DS), $messager);
 
@@ -95,10 +79,6 @@ class ZipBackup
 
         $zip->close();
 
-        if ($max_execution_time !== false) {
-            ini_set('max_execution_time', $max_execution_time);
-        }
-
         return $destination;
     }
 
@@ -117,10 +97,7 @@ class ZipBackup
                 // Remove prefix from file path before add to zip.
                 $localPath = substr($filePath, $exclusiveLength);
 
-                if (in_array($f, static::$ignoreFolders)) {
-                    continue;
-                } elseif (in_array($localPath, static::$ignorePaths)) {
-                    $zipFile->addEmptyDir($f);
+                if (in_array($f, static::$ignoreFolders) || in_array($localPath, static::$ignorePaths)) {
                     continue;
                 }
 

@@ -4,54 +4,31 @@ namespace RocketTheme\Toolbox\ResourceLocator;
 use FilesystemIterator;
 
 /**
- * Implements FilesystemIterator for uniform resource locator.
+ * Implements Read/Write Streams.
  *
  * @package RocketTheme\Toolbox\ResourceLocator
  * @author RocketTheme
  * @license MIT
  */
-class UniformResourceIterator extends FilesystemIterator
+class UniformResourceIterator extends \FilesystemIterator
 {
-    /**
-     * @var FilesystemIterator
-     */
-    protected $iterator;
-
-    /**
-     * @var array
-     */
-    protected $found;
-
-    /**
-     * @var array
-     */
-    protected $stack;
-
-    /**
-     * @var string
-     */
-    protected $path;
-
-    /**
-     * @var int
-     */
+    /** @var array|FilesystemIterator[] */
+    protected $iterators = [];
+    protected $index = 0;
+    protected $found = [];
     protected $flags;
 
-    /**
-     * @var UniformResourceLocator
-     */
-    protected $locator;
-
-    public function __construct($path, $flags = null, UniformResourceLocator $locator = null)
+    public function __construct($paths, $flags = null, UniformResourceLocator $locator = null)
     {
         if (!$locator) {
             throw new \BadMethodCallException('Use $locator->getIterator() instead');
         }
 
-        $this->path = $path;
         $this->setFlags($flags);
-        $this->locator = $locator;
-        $this->rewind();
+
+        foreach ($locator->findResources($paths) as $path) {
+            $this->iterators[] = new FilesystemIterator($path, $this->flags);
+        }
     }
 
     public function current()
@@ -59,42 +36,75 @@ class UniformResourceIterator extends FilesystemIterator
         if ($this->flags & static::CURRENT_AS_SELF) {
             return $this;
         }
-        return $this->iterator->current();
+        return $this->iterators[$this->index]->current();
     }
 
     public function key()
     {
-        return $this->iterator->key();
+        return $this->iterators[$this->index]->key();
     }
 
     public function next()
     {
+        if (!isset($this->iterators[$this->index])) {
+            return;
+        }
+
         do {
             $found = $this->findNext();
         } while ($found && !empty($this->found[$found]));
 
-        if ($found) {
-            // Mark the file as found.
-            $this->found[$found] = true;
+        if (!$found) {
+            return;
         }
+
+        // Mark the file as found.
+        $this->found[$found] = true;
+    }
+
+    protected function findNext()
+    {
+        $iterator = $this->iterators[$this->index];
+
+        $iterator->next();
+        if (!$iterator->valid()) {
+            do {
+                $this->index++;
+                if (!isset($this->iterators[$this->index])) {
+                    return null;
+                }
+                $iterator = $this->iterators[$this->index];
+            } while (!$iterator->valid());
+        }
+
+        return $this->getFilename();
     }
 
     public function valid()
     {
-        return $this->iterator && $this->iterator->valid();
+         return isset($this->iterators[$this->index]) && $this->iterators[$this->index]->valid();
     }
 
     public function rewind()
     {
+        $this->index = 0;
         $this->found = [];
-        $this->stack = $this->locator->findResources($this->path);
-        $this->next();
-    }
 
-    public function getUrl()
-    {
-        $path = $this->path . (substr($this->path, -1, 1) === '/' ? '' : '/');
-        return $path . $this->iterator->getFilename();
+        // Rewind all iterators.
+        foreach($this->iterators as $iterator) {
+            $iterator->setFlags($this->flags);
+            $iterator->rewind();
+        }
+
+        // Set pointer to the first matching file.
+        $iterator = reset($this->iterators);
+        if (!$iterator->valid()) {
+            // Iterator is empty. Find the next file.
+            $this->next();
+        } else {
+            // Mark the file as found.
+            $this->found[$iterator->getFilename()] = true;
+        }
     }
 
     public function seek($position)
@@ -104,112 +114,111 @@ class UniformResourceIterator extends FilesystemIterator
 
     public function getATime()
     {
-        return $this->iterator->getATime();
+        return $this->iterators[$this->index]->getATime();
     }
 
     public function getBasename($suffix = null)
     {
-        return $this->iterator->getBasename($suffix);
+        return $this->iterators[$this->index]->getBasename($suffix);
     }
 
     public function getCTime()
     {
-        return $this->iterator->getCTime();
+        return $this->iterators[$this->index]->getCTime();
     }
 
     public function getExtension()
     {
-        return $this->iterator->getExtension();
+        return $this->iterators[$this->index]->getExtension();
     }
 
     public function getFilename()
     {
-        return $this->iterator->getFilename();
+        return $this->iterators[$this->index]->getFilename();
     }
 
     public function getGroup()
     {
-        return $this->iterator->getGroup();
+        return $this->iterators[$this->index]->getGroup();
     }
 
     public function getInode()
     {
-        return $this->iterator->getInode();
+        return $this->iterators[$this->index]->getInode();
     }
 
     public function getMTime()
     {
-        return $this->iterator->getMTime();
+        return $this->iterators[$this->index]->getMTime();
     }
 
     public function getOwner()
     {
-        return $this->iterator->getOwner();
+        return $this->iterators[$this->index]->getOwner();
     }
 
     public function getPath()
     {
-        return $this->iterator->getPath();
+        return $this->iterators[$this->index]->getPath();
     }
 
     public function getPathname()
     {
-        return $this->iterator->getPathname();
+        return $this->iterators[$this->index]->getPathname();
     }
 
     public function getPerms()
     {
-        return $this->iterator->getPerms();
+        return $this->iterators[$this->index]->getPerms();
     }
 
     public function getSize()
     {
-        return $this->iterator->getSize();
+        return $this->iterators[$this->index]->getSize();
     }
-
     public function getType()
     {
-        return $this->iterator->getType();
+        return $this->iterators[$this->index]->getType();
     }
 
     public function isDir()
     {
-        return $this->iterator->isDir();
+        return $this->iterators[$this->index]->isDir();
     }
 
     public function isDot()
     {
-        return $this->iterator->isDot();
+        return $this->iterators[$this->index]->isDot();
     }
 
     public function isExecutable()
     {
-        return $this->iterator->isExecutable();
+        return $this->iterators[$this->index]->isExecutable();
     }
 
     public function isFile()
     {
-        return $this->iterator->isFile();
+        return $this->iterators[$this->index]->isFile();
     }
 
     public function isLink()
     {
-        return $this->iterator->isLink();
+        return $this->iterators[$this->index]->isLink();
     }
 
     public function isReadable()
     {
-        return $this->iterator->isReadable();
+        return $this->iterators[$this->index]->isReadable();
     }
 
     public function isWritable()
     {
-        return $this->iterator->isWritable();
+        return $this->iterators[$this->index]->isWritable();
     }
 
     public function __toString()
     {
-        return $this->iterator->__toString();
+        return $this->iterators[$this->index]->__toString();
     }
 
     public function getFlags()
@@ -219,32 +228,10 @@ class UniformResourceIterator extends FilesystemIterator
 
     public function setFlags($flags = null)
     {
-        $this->flags = $flags === null ? static::KEY_AS_PATHNAME | static::CURRENT_AS_SELF | static::SKIP_DOTS : $flags;
+        $this->flags = $flags === null ? static::KEY_AS_PATHNAME | static::CURRENT_AS_FILEINFO | static::SKIP_DOTS : $flags;
 
-        if ($this->iterator) {
-            $this->iterator->setFlags($this->flags);
+        foreach($this->iterators as $iterator) {
+            $iterator->setFlags($this->flags);
         }
-    }
-
-    protected function findNext()
-    {
-        if ($this->iterator) {
-            $this->iterator->next();
-        }
-
-        if (!$this->valid()) {
-            do {
-                // Move to the next iterator if it exists.
-                $path = array_shift($this->stack);
-
-                if (!isset($path)) {
-                    return null;
-                }
-
-                $this->iterator = new \FilesystemIterator($path, $this->getFlags());
-            } while (!$this->iterator->valid());
-        }
-
-        return $this->getFilename();
     }
 }

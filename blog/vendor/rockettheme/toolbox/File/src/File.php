@@ -125,20 +125,6 @@ class File implements FileInterface
     }
 
     /**
-     * Free the file instance.
-     */
-    public function free()
-    {
-        if ($this->locked) {
-            $this->unlock();
-        }
-        $this->content = null;
-        $this->raw = null;
-
-        unset(static::$instances[$this->filename]);
-    }
-
-    /**
      * Get/set the file location.
      *
      * @param  string $var
@@ -195,12 +181,7 @@ class File implements FileInterface
             if (!$this->mkdir(dirname($this->filename))) {
                 throw new \RuntimeException('Creating directory failed for ' . $this->filename);
             }
-            $this->handle = @fopen($this->filename, 'cb+');
-            if (!$this->handle) {
-                $error = error_get_last();
-
-                throw new \RuntimeException("Opening file for writing failed on error {$error['message']}");
-            }
+            $this->handle = fopen($this->filename, 'wb+');
         }
         $lock = $block ? LOCK_EX : LOCK_EX | LOCK_NB;
         return $this->locked = $this->handle ? flock($this->handle, $lock) : false;
@@ -319,8 +300,7 @@ class File implements FileInterface
             $lock = true;
         }
 
-        // As we are using non-truncating locking, make sure that the file is empty before writing.
-        if (@ftruncate($this->handle, 0) === false || @fwrite($this->handle, $this->raw()) === false) {
+        if (@fwrite($this->handle, $this->raw()) === false) {
             $this->unlock();
             throw new \RuntimeException('Saving file failed: ' . $this->filename);
         }
@@ -390,8 +370,7 @@ class File implements FileInterface
      */
     protected function mkdir($dir)
     {
-        // Silence error for open_basedir; should fail in mkdir instead.
-        if (!@is_dir($dir)) {
+        if (!is_dir($dir)) {
             $success = @mkdir($dir, 0777, true);
 
             if (!$success) {

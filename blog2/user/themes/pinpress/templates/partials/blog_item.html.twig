@@ -19,7 +19,6 @@
 
         <div class="meta">
           <div><i class="fa fa-clock-o"></i> {{ page.date|date(config.system.pages.dateformat.long) }}</div>
-          <!--
           <div><i class="fa fa-user"></i> <span style="color:#E74C3C">
             {% if page.header.author.name or site.author.name %}
             {% if page.header.author.name %}
@@ -37,7 +36,6 @@
             {% endif %}
             {% endif %}
           </span></div>
-          -->
           {% if page.taxonomy.tag %}
           <div> <i class="fa fa-tags"></i>
             {% for tag in page.taxonomy.tag %}
@@ -51,7 +49,6 @@
         <p>
           <small>
             <span><i class="fa fa-clock-o"></i> {{ page.date|date(config.system.pages.dateformat.long) }}</span>
-            <!--
             <span><i class="fa fa-user"></i>
               {% if page.header.author.name or site.author.name %}
               {% if page.header.author.name %}
@@ -69,7 +66,6 @@
               {% endif %}
               {% endif %}
             </span>
-            -->
             {% if page.taxonomy.tag %}
             <span> <i class="fa fa-tags"></i>
               {% for tag in page.taxonomy.tag %}
@@ -155,7 +151,6 @@
               <div class="clear"></div>
             </div>
 
-            <!--
             {% if not truncate %}
             <div class="author-meta box">
               {% if page.header.author %}
@@ -207,7 +202,6 @@
               <div class="clear"></div>
             </div>
             {% endif %}
-            -->
 
             {% if not truncate %}
             <div class="related_posts">

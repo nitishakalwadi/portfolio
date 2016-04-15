@@ -1,13 +1,18 @@
-name: Pinpress Site
-version: 1.0.0
-description: "PinPress is a creative Flat Blog/Magazine grav theme and it is the perfect choice for professionals who’s looking for a magazine theme or a personal niche, corporate, and marketing blogs."
-icon: newspaper-o
+name: Notepad
+version: 1.0.2
+description: "Notepad theme by HOSSAIN MOHD FAYSAL ported to **Grav**"
+icon: pencil-square
 author:
   name: Team Grav
   email: devs@getgrav.org
   url: http://getgrav.org
-homepage: https://github.com/getgrav/grav-skeleton-pinpress-blog
-demo: http://demo.getgrav.org/pinpress-skeleton
-keywords: pinpress, skeleton, single, page, modular, blog
-bugs: https://github.com/getgrav/grav-skeleton-pinpress-blog/issues
-license: CC BY 3.0
+homepage: https://github.com/getgrav/grav-skeleton-notepad-site
+demo: http://demo.getgrav.org/notepad-skeleton
+keywords: notepad, theme, modern, fast, responsive, blog
+bugs: https://github.com/getgrav/grav-theme-notepad/issues
+license: MIT
+
+form:
+  validation: strict
+  fields:
+

@@ -21,12 +21,10 @@
         <category term="{{ tag|lower }}" label="{{ tag|capitalize }}" />
         {% endfor %}
         <content type="html">
-            <![CDATA[
             {% if banner %}
-            {{ banner.cropZoom(600,400).html }}
+            {{ banner.cropZoom(600,400).html|e }}
             {% endif %}
-            {{ item.summary|truncate_html(collection.params.length) }}
-            ]]>
+            {{ item.content|striptags|truncate(collection.params.length)|e }}
         </content>
     </entry>
     {% endfor %}

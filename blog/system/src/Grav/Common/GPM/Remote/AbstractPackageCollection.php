@@ -3,6 +3,7 @@ namespace Grav\Common\GPM\Remote;
 
 use Grav\Common\GPM\Common\AbstractPackageCollection as BaseCollection;
 use Grav\Common\GPM\Response;
+
 use \Doctrine\Common\Cache\FilesystemCache;
 
 class AbstractPackageCollection extends BaseCollection

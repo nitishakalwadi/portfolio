@@ -6,12 +6,11 @@ use Grav\Common\Page\Page;
 use Grav\Common\Config\Config;
 use RocketTheme\Toolbox\Event\EventDispatcher;
 use RocketTheme\Toolbox\Event\EventSubscriberInterface;
-use RocketTheme\Toolbox\File\YamlFile;
 
 /**
  * The Plugin object just holds the id and path to a plugin.
  *
- * @author  RocketTheme
+ * @author RocketTheme
  * @license MIT
  */
 class Plugin implements EventSubscriberInterface
@@ -41,7 +40,7 @@ class Plugin implements EventSubscriberInterface
     {
         $methods = get_class_methods(get_called_class());
 
-        $list = [];
+        $list = array();
         foreach ($methods as $method) {
             if (strpos($method, 'on') === 0) {
                 $list[$method] = [$method, 0];
@@ -54,9 +53,9 @@ class Plugin implements EventSubscriberInterface
     /**
      * Constructor.
      *
-     * @param string $name
-     * @param Grav   $grav
-     * @param Config $config
+     * @param string              $name
+     * @param Grav                $grav
+     * @param Config              $config
      */
     public function __construct($name, Grav $grav, Config $config)
     {
@@ -70,7 +69,6 @@ class Plugin implements EventSubscriberInterface
         if (isset($this->grav['admin'])) {
             return true;
         }
-
         return false;
     }
 
@@ -84,12 +82,12 @@ class Plugin implements EventSubscriberInterface
 
         foreach ($events as $eventName => $params) {
             if (is_string($params)) {
-                $dispatcher->addListener($eventName, [$this, $params]);
+                $dispatcher->addListener($eventName, array($this, $params));
             } elseif (is_string($params[0])) {
-                $dispatcher->addListener($eventName, [$this, $params[0]], isset($params[1]) ? $params[1] : 0);
+                $dispatcher->addListener($eventName, array($this, $params[0]), isset($params[1]) ? $params[1] : 0);
             } else {
                 foreach ($params as $listener) {
-                    $dispatcher->addListener($eventName, [$this, $listener[0]], isset($listener[1]) ? $listener[1] : 0);
+                    $dispatcher->addListener($eventName, array($this, $listener[0]), isset($listener[1]) ? $listener[1] : 0);
                 }
             }
         }
@@ -105,12 +103,12 @@ class Plugin implements EventSubscriberInterface
 
         foreach ($events as $eventName => $params) {
             if (is_string($params)) {
-                $dispatcher->removeListener($eventName, [$this, $params]);
+                $dispatcher->removeListener($eventName, array($this, $params));
             } elseif (is_string($params[0])) {
-                $dispatcher->removeListener($eventName, [$this, $params[0]]);
+                $dispatcher->removeListener($eventName, array($this, $params[0]));
             } else {
                 foreach ($params as $listener) {
-                    $dispatcher->removeListener($eventName, [$this, $listener[0]]);
+                    $dispatcher->removeListener($eventName, array($this, $listener[0]));
                 }
             }
         }
@@ -123,90 +121,60 @@ class Plugin implements EventSubscriberInterface
      *
      * format: [plugin:myplugin_name](function_data)
      *
-     * @param string   $content        The string to perform operations upon
-     * @param callable $function       The anonymous callback function
-     * @param string   $internal_regex Optional internal regex to extra data from
+     * @param        $content           The string to perform operations upon
+     * @param        $function          The anonymous callback function
+     * @param string $internal_regex    Optional internal regex to extra data from
      *
      * @return string
      */
     protected function parseLinks($content, $function, $internal_regex = '(.*)')
     {
-        $regex = '/\[plugin:(?:' . $this->name . ')\]\(' . $internal_regex . '\)/i';
-
+        $regex = '/\[plugin:(?:'.$this->name.')\]\('.$internal_regex.'\)/i';
         return preg_replace_callback($regex, $function, $content);
     }
 
     /**
      * Merge global and page configurations.
      *
-     * @param Page  $page    The page to merge the configurations with the
-     *                       plugin settings.
-     * @param bool  $deep    Should you use deep or shallow merging
-     * @param array $params  Array of additional configuration options to
-     *                       merge with the plugin settings.
+     * @param  Page $page   The page to merge the configurations with the
+     *                      plugin settings.
+     *
+     * @param bool  $deep   Should you use deep or shallow merging
      *
      * @return \Grav\Common\Data\Data
      */
-    protected function mergeConfig(Page $page, $deep = false, $params = [])
+    protected function mergeConfig(Page $page, $deep = false)
     {
         $class_name = $this->name;
         $class_name_merged = $class_name . '.merged';
-        $defaults = $this->config->get('plugins.' . $class_name, []);
-        $page_header = $page->header();
-        $header = [];
-        if (!isset($page_header->$class_name_merged) && isset($page_header->$class_name)) {
-            // Get default plugin configurations and retrieve page header configuration
-            $config = $page_header->$class_name;
-            if (is_bool($config)) {
-                // Overwrite enabled option with boolean value in page header
-                $config = ['enabled' => $config];
-            }
-            // Merge page header settings using deep or shallow merging technique
-            if ($deep) {
-                $header = array_replace_recursive($defaults, $config);
+        $defaults = $this->config->get('plugins.' . $class_name, array());
+        $header = array();
+
+        if (isset($page->header()->$class_name_merged)) {
+            $merged = $page->header()->$class_name_merged;
+            if (count($merged) > 0) {
+                return $merged;
             } else {
-                $header = array_merge($defaults, $config);
+                return new Data($defaults);
             }
-            // Create new config object and set it on the page object so it's cached for next time
-            $page->modifyHeader($class_name_merged, new Data($header));
-        } else if (isset($page_header->$class_name_merged)) {
-            $merged = $page_header->$class_name_merged;
-            $header = $merged->toArray();
         }
-        if (empty($header)) {
+
+        // Get default plugin configurations and retrieve page header configuration
+        if (isset($page->header()->$class_name)) {
+            if ($deep) {
+                $header =  array_replace_recursive($defaults, $page->header()->$class_name);
+            } else {
+                $header =  array_merge($defaults, $page->header()->$class_name);
+            }
+        } else {
             $header = $defaults;
         }
-        // Merge additional parameter with configuration options
-        if ($deep) {
-            $header = array_replace_recursive($header, $params);
-        } else {
-            $header = array_merge($header, $params);
-        }
+
+        // Create new config object and set it on the page object so it's cached for next time
+        $config = new Data($header);
+        $page->modifyHeader($class_name_merged, $config);
 
         // Return configurations as a new data config class
-        return new Data($header);
-    }
-
-    /**
-     * Persists to disk the plugin parameters currently stored in the Grav Config object
-     *
-     * @param string $plugin_name The name of the plugin whose config it should store.
-     *
-     * @return true
-     */
-    public static function saveConfig($plugin_name)
-    {
-        if (!$plugin_name) {
-            return false;
-        }
-
-        $locator = Grav::instance()['locator'];
-        $filename = 'config://plugins/' . $plugin_name . '.yaml';
-        $file = YamlFile::instance($locator->findResource($filename, true, true));
-        $content = Grav::instance()['config']->get('plugins.' . $plugin_name);
-        $file->save($content);
-        $file->free();
-
-        return true;
+        return $config;
     }
 }

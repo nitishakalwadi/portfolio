@@ -20,11 +20,9 @@ interface ExportInterface
     /**
      * Convert object into YAML string.
      *
-     * @param int $inline
-     * @param int $indent
      * @return string
      */
-    public function toYaml($inline = 3, $indent = 2);
+    public function toYaml();
 
     /**
      * Convert object into JSON string.

@@ -1,0 +1,34 @@
+1435288522
+s:3788:"<p>So you like blogging and want to setup and start your own blog? You just need a simple CMS that is up and running without breaking your head much? Say no more !! Welcome to the era of flat file CMS . No database, No Setup. Extract files and you are up and running.</p>
+<p>I will be giving you an introduction to an extremely simple and powerful flatfile CMS called <a href='http://www.getgrav.org/' target='_blank'>GRAV</a> </p>
+<h2>So what exactly is GRAV?</h2>
+<p>GRAV is a simple yet very powerful flatfile CMS that can power all sorts of websites. It is just a matter of unzippig files and uploading them to the root directory and your very own website is up and running. It is fast, has sophisticated caching, and a light footprint for optimal performance. Content is just a simple markdown files, with no complicated databases to deal with. It has a host of <a href='http://getgrav.org/downloads/themes' target='_blank'>themes</a>, <a href='http://getgrav.org/downloads/plugins' target='_blank'>plugins</a> and ready to go <a href='http://getgrav.org/downloads/skeletons' target='_blank'>skeletons</a> that you can download.</p>
+<h2>Where GRAV scores</h2>
+<ul>
+<li>Crazy Fast</li>
+<li>Easy to Install, Build and Maintain</li>
+<li>Unlimited Extensibility</li>
+<li>Free and Open</li>
+</ul>
+<h2>Installation</h2>
+<p>Installation with ZIP package</p>
+<ul>
+<li>Download the latest GRAV packages from the <a href='http://getgrav.org/downloads' target='_blank'>downloads</a></li>
+<li>Extract the ZIP file in your webroot of your web server. eg-<code>~/webroot/grav</code></li>
+</ul>
+<p><code>If you downloaded the ZIP file and then plan to move it to your webroot, please move the ENTIRE FOLDER because it contains several hidden files (such as .htaccess) that will not be selected by default. The omission of these hidden files can cause problems when running Grav.</code></p>
+<p>This is the simplest form of installation. You can check out the other forms of installation <a href='http://learn.getgrav.org/basics/installation' target='_blank'>here</a>.</p>
+<h2>Basics</h2>
+<h3>Content Basics</h3>
+<p>The most basic folder that you have to be aware of is the <code>usr/pages</code> of your Grav install. All the user content is stored in this folder.</p>
+<p>The foldres can be named <code>01.foldername</code>, <code>02.foldername</code> etc. The numeric part is optional but it provides a couple of things that can be handy.</p>
+<p>Firstly, it lets you expressly define the order of your pages. For example, <code>01</code> will come before <code>02</code>, but <code>00</code> will come before <code>01</code>.</p>
+<p>The other thing that the numeric portion of the folder name does, is explicitly inform Grav this page should be visible in the menu. It is important to note that the numeric portion up to and including the <code>.</code> will be removed from URLs.</p>
+<h3>Adding a page</h3>
+<p>Pages in Grav are composed in <code>Markdown syntax</code>. Markdown is a formatting syntax that is written in plain text and then converted automatically to HTML. It uses very simple text symbols to indicate key HTML tags making it very easy to write without having to know the complexities of HTML. There are numerous other benefits of using Markdown including less-errors, valid markup, very readable, simple to learn, transferable, etc.</p>
+<ol>
+<li>Navigate to your pages folder: user/pages/ and create a new folder. In this example we will use explicit default ordering and call the folder 02.mypage.</li>
+</ol>
+<blockquote>
+<p>Whatever velit occaecat quis deserunt gastropub, leggings elit tousled roof party 3 wolf moon kogi pug blue bottle ea. Fashion axe shabby chic Austin quinoa pickled laborum bitters next level, disrupt deep v accusamus non fingerstache.</p>
+</blockquote>";

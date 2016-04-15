@@ -1,8 +1,8 @@
 <?php
 return [
     '@class' => 'Grav\\Common\\Config\\CompiledConfig',
-    'timestamp' => 1460696357,
-    'checksum' => 'e4ca5092df192206dda3b2e26738a785',
+    'timestamp' => 1459940512,
+    'checksum' => 'd23ab5853ffaed3a0f8a3db65d7e0318',
     'files' => [
         'user/config' => [
             'plugins/email' => [
@@ -23,11 +23,11 @@ return [
             ],
             'site' => [
                 'file' => 'user/config/site.yaml',
-                'modified' => 1460642541
+                'modified' => 1456923672
             ],
             'system' => [
                 'file' => 'user/config/system.yaml',
-                'modified' => 1459962204
+                'modified' => 1456923672
             ]
         ],
         'system/config' => [
@@ -37,7 +37,7 @@ return [
             ],
             'site' => [
                 'file' => 'system/config/site.yaml',
-                'modified' => 1459961926
+                'modified' => 1456923693
             ],
             'streams' => [
                 'file' => 'system/config/streams.yaml',
@@ -608,14 +608,14 @@ return [
             ]
         ],
         'site' => [
-            'title' => 'Nitish\'s Blog',
+            'title' => 'PinPress',
             'author' => [
-                'name' => 'Nitishkumar Akalwadi',
-                'email' => 'nitish_akalwadi@yahoo.co.incididunt',
-                'url' => 'http://nitishakalwadi.tk',
+                'name' => 'Grav',
+                'email' => 'joe@test.com',
+                'url' => 'http://getgrav.org/',
                 'logo' => NULL,
-                'gravatar' => NULL,
-                'description' => ''
+                'gravatar' => 'contact@getgrav.org',
+                'description' => 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'
             ],
             'taxonomies' => [
                 0 => 'category',
@@ -623,7 +623,7 @@ return [
                 2 => 'month'
             ],
             'metadata' => [
-                'description' => ''
+                'description' => 'Pinpress is a minimal Theme designed for blogger, converted to Grav.'
             ],
             'summary' => [
                 'enabled' => true,
@@ -637,7 +637,13 @@ return [
                 'route' => ''
             ],
             'description' => 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-            'menu' => NULL
+            'menu' => [
+                0 => [
+                    'url' => 'error',
+                    'text' => 'Error Page'
+                ]
+            ],
+            'copyright' => 'Created By <a href="http://www.soratemplates.com/" rel="dofollow" target="_blank" title="Blogger Templates">Sora Templates</a> and <a href="http://mybloggerthemes.com/" rel="dofollow" target="_blank" title="Blogger Templates">My Blogger Themes</a> , Ported By <a href="http://www.getgrav.org" rel="dofollow" target="_blank" title="Grav">Grav Team</a>'
         ],
         'streams' => [
             'schemes' => [

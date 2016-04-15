@@ -40,11 +40,8 @@ class GPM extends Iterator
     public function __construct($refresh = false, $callback = null)
     {
         $this->installed  = new Local\Packages();
-        try {
-            $this->repository = new Remote\Packages($refresh, $callback);
-            $this->grav       = new Remote\Grav($refresh, $callback);
-        } catch (\Exception $e) {
-        }
+        $this->repository = new Remote\Packages($refresh, $callback);
+        $this->grav       = new Remote\Grav($refresh, $callback);
     }
 
     /**
@@ -323,24 +320,13 @@ class GPM extends Iterator
             return $found;
         }
 
-        $themes = $this->getRepositoryThemes();
-        $plugins = $this->getRepositoryPlugins();
-
-        if (!$themes && !$plugins) {
-            if (!is_writable(ROOT_DIR . '/cache/gpm')) {
-                throw new \RuntimeException("The cache/gpm folder is not writable. Please check the folder permissions.");
-            }
-
-            throw new \RuntimeException("GPM not reachable. Please check your internet connection or check the Grav site is reachable");
-        }
-
-        if ($themes) foreach ($themes as $slug => $theme) {
+        foreach ($this->getRepositoryThemes() as $slug => $theme) {
             if ($search == $slug || $search == $theme->name) {
                 return $theme;
             }
         }
 
-        if ($plugins) foreach ($plugins as $slug => $plugin) {
+        foreach ($this->getRepositoryPlugins() as $slug => $plugin) {
             if ($search == $slug || $search == $plugin->name) {
                 return $plugin;
             }
@@ -363,7 +349,6 @@ class GPM extends Iterator
     public function findPackages($searches = [])
     {
         $packages = ['total' => 0, 'not_found' => []];
-        $inflector = new Inflector();
 
         foreach ($searches as $search) {
             $repository = '';
@@ -376,7 +361,7 @@ class GPM extends Iterator
             }
 
             if ($found = $this->findPackage($search)) {
-                // set override repository if provided
+                // set override respository if provided
                 if ($repository) {
                     $found->override_repository = $repository;
                 }
@@ -395,7 +380,7 @@ class GPM extends Iterator
                 }
 
                 $not_found = new \stdClass();
-                $not_found->name = $inflector->camelize($search);
+                $not_found->name = Inflector::camelize($search);
                 $not_found->slug = $search;
                 $not_found->package_type = $type;
                 $not_found->install_path = str_replace('%name%', $search, $this->install_paths[$type]);

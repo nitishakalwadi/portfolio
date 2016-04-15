@@ -1,8 +1,7 @@
-title: PLUGIN_ADMIN.FILE_STREAMS
+title: File Streams
 
 form:
   validation: loose
-  hidden: true
   fields:
     schemes.xxx:
       type: array

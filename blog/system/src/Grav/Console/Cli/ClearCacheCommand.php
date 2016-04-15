@@ -2,24 +2,27 @@
 namespace Grav\Console\Cli;
 
 use Grav\Common\Cache;
-use Grav\Console\ConsoleCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class ClearCacheCommand
  * @package Grav\Console\Cli
  */
-class ClearCacheCommand extends ConsoleCommand
+class ClearCacheCommand extends Command
 {
+
     /**
      *
      */
     protected function configure()
     {
         $this
-            ->setName('clear-cache')
-            ->setAliases(['clearcache'])
-            ->setDescription('Clears Grav cache')
+            ->setName("clear-cache")
+            ->setDescription("Clears Grav cache")
             ->addOption('all', null, InputOption::VALUE_NONE, 'If set will remove all including compiled, twig, doctrine caches')
             ->addOption('assets-only', null, InputOption::VALUE_NONE, 'If set will remove only assets/*')
             ->addOption('images-only', null, InputOption::VALUE_NONE, 'If set will remove only images/*')
@@ -28,36 +31,47 @@ class ClearCacheCommand extends ConsoleCommand
     }
 
     /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int|null|void
      */
-    protected function serve()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->cleanPaths();
+        // Create a red output option
+        $output->getFormatter()->setStyle('red', new OutputFormatterStyle('red'));
+        $output->getFormatter()->setStyle('cyan', new OutputFormatterStyle('cyan'));
+        $output->getFormatter()->setStyle('green', new OutputFormatterStyle('green'));
+        $output->getFormatter()->setStyle('magenta', new OutputFormatterStyle('magenta'));
+
+        $this->cleanPaths($input, $output);
     }
 
+    // loops over the array of paths and deletes the files/folders
     /**
-     * loops over the array of paths and deletes the files/folders
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      */
-    private function cleanPaths()
+    private function cleanPaths(InputInterface $input, OutputInterface $output)
     {
-        $this->output->writeln('');
-        $this->output->writeln('<magenta>Clearing cache</magenta>');
-        $this->output->writeln('');
+        $output->writeln('');
+        $output->writeln('<magenta>Clearing cache</magenta>');
+        $output->writeln('');
 
-        if ($this->input->getOption('all')) {
+        if ($input->getOption('all')) {
             $remove = 'all';
-        } elseif ($this->input->getOption('assets-only')) {
+        } elseif ($input->getOption('assets-only')) {
             $remove = 'assets-only';
-        } elseif ($this->input->getOption('images-only')) {
+        } elseif ($input->getOption('images-only')) {
             $remove = 'images-only';
-        } elseif ($this->input->getOption('cache-only')) {
+        } elseif ($input->getOption('cache-only')) {
             $remove = 'cache-only';
         } else {
             $remove = 'standard';
         }
 
         foreach (Cache::clearCache($remove) as $result) {
-            $this->output->writeln($result);
+            $output->writeln($result);
         }
     }
 }

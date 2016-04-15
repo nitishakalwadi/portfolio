@@ -1,19 +1,25 @@
 <?php
 namespace Grav\Console\Gpm;
 
+use Grav\Common\Filesystem\Folder;
 use Grav\Common\GPM\GPM;
 use Grav\Common\GPM\Installer;
-use Grav\Console\ConsoleCommand;
+use Grav\Console\ConsoleTrait;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 /**
  * Class UninstallCommand
  * @package Grav\Console\Gpm
  */
-class UninstallCommand extends ConsoleCommand
+class UninstallCommand extends Command
 {
+    use ConsoleTrait;
+
     /**
      * @var
      */
@@ -58,10 +64,15 @@ class UninstallCommand extends ConsoleCommand
     }
 
     /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
      * @return int|null|void
      */
-    protected function serve()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->setupConsole($input, $output);
+
         $this->gpm = new GPM();
 
         $packages = array_map('strtolower', $this->input->getArgument('package'));
@@ -99,14 +110,14 @@ class UninstallCommand extends ConsoleCommand
 
 
             $this->output->write("  |- Checking destination...  ");
-            $checks = $this->checkDestination($slug, $package);
+            $checks = $this->checkDestination($package);
 
             if (!$checks) {
                 $this->output->writeln("  '- <red>Installation failed or aborted.</red>");
                 $this->output->writeln('');
             } else {
                 $this->output->write("  |- Uninstalling package...  ");
-                $uninstall = $this->uninstallPackage($slug, $package);
+                $uninstall = $this->uninstallPackage($package);
 
                 if (!$uninstall) {
                     $this->output->writeln("  '- <red>Uninstallation failed or aborted.</red>");
@@ -124,14 +135,12 @@ class UninstallCommand extends ConsoleCommand
 
 
     /**
-     * @param $slug
      * @param $package
-     *
      * @return bool
      */
-    private function uninstallPackage($slug, $package)
+    private function uninstallPackage($package)
     {
-        $path = self::getGrav()['locator']->findResource($package->package_type . '://' .$slug);
+        $path = self::getGrav()['locator']->findResource($package->package_type . '://' . $package->slug);
         Installer::uninstall($path);
         $errorCode = Installer::lastErrorCode();
 
@@ -150,17 +159,15 @@ class UninstallCommand extends ConsoleCommand
 
         return true;
     }
-
     /**
-     * @param $slug
      * @param $package
      *
      * @return bool
      */
 
-    private function checkDestination($slug, $package)
+    private function checkDestination($package)
     {
-        $path = self::getGrav()['locator']->findResource($package->package_type . '://' . $slug);
+        $path = self::getGrav()['locator']->findResource($package->package_type . '://' . $package->slug);
         $questionHelper = $this->getHelper('question');
         $skipPrompt = $this->input->getOption('all-yes');
 

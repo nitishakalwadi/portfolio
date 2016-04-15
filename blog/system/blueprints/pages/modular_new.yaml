@@ -10,39 +10,40 @@ form:
 
     section:
         type: section
-        title: PLUGIN_ADMIN.ADD_MODULAR_CONTENT
+        title: Add Modular Content
 
     title:
       type: text
-      label: PLUGIN_ADMIN.PAGE_TITLE
+      label: Page Title
       validate:
         required: true
 
     folder:
       type: text
-      label: PLUGIN_ADMIN.FOLDER_NAME
+      label: Folder Name
       validate:
         type: slug
         required: true
 
+
+
     route:
       type: select
-      label: PLUGIN_ADMIN.PAGE
+      label: Page
       classes: fancy
-      '@data-options': '\Grav\Common\Page\Pages::parents'
-      '@data-default': '\Grav\Plugin\admin::route'
+      @data-options: '\Grav\Common\Page\Pages::parents'
+      @data-default: '\Grav\Plugin\admin::route'
       options:
-        '': PLUGIN_ADMIN.DEFAULT_OPTION_SELECT
+        '': '- Select -'
       validate:
         required: true
 
-    name:
+    type:
       type: select
       classes: fancy
-      label: PLUGIN_ADMIN.MODULAR_TEMPLATE
-      help: PLUGIN_ADMIN.PAGE_FILE_HELP
+      label: Modular Template
       default: default
-      '@data-options': '\Grav\Common\Page\Pages::modularTypes'
+      @data-options: '\Grav\Common\Page\Pages::modularTypes'
       validate:
         required: true
 
@@ -51,6 +52,3 @@ form:
       default: 1
       validate:
         type: bool
-
-    blueprint:
-      type: blueprint
