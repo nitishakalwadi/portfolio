@@ -2,35 +2,29 @@
 return [
     '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
     'filename' => '/home/ubuntu/workspace/portfolio/blog2/user/config/site.yaml',
-    'modified' => 1456923672,
+    'modified' => 1460642541,
     'data' => [
-        'title' => 'PinPress',
+        'title' => 'Nitish\'s Blog',
         'description' => 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
         'author' => [
-            'name' => 'Grav',
-            'email' => 'joe@test.com',
-            'url' => 'http://getgrav.org/',
+            'name' => 'Nitishkumar Akalwadi',
+            'email' => 'nitish_akalwadi@yahoo.co.incididunt',
+            'url' => 'http://nitishakalwadi.tk',
             'logo' => NULL,
-            'gravatar' => 'contact@getgrav.org',
-            'description' => 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.'
+            'gravatar' => NULL,
+            'description' => ''
         ],
         'blog' => [
             'route' => ''
         ],
         'metadata' => [
-            'description' => 'Pinpress is a minimal Theme designed for blogger, converted to Grav.'
+            'description' => ''
         ],
         'taxonomies' => [
             0 => 'category',
             1 => 'tag',
             2 => 'month'
         ],
-        'menu' => [
-            0 => [
-                'url' => 'error',
-                'text' => 'Error Page'
-            ]
-        ],
-        'copyright' => 'Created By <a href="http://www.soratemplates.com/" rel="dofollow" target="_blank" title="Blogger Templates">Sora Templates</a> and <a href="http://mybloggerthemes.com/" rel="dofollow" target="_blank" title="Blogger Templates">My Blogger Themes</a> , Ported By <a href="http://www.getgrav.org" rel="dofollow" target="_blank" title="Grav">Grav Team</a>'
+        'menu' => NULL
     ]
 ];

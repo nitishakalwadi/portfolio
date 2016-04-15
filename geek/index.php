@@ -1491,7 +1491,7 @@
             }
             
             function downloadDoc(){
-                window.open("docs/nitishkumar_akalwadi_resume.pdf","_blank");
+                window.open("http://nitishakalwadi.tk/docs/nitishkumar_akalwadi_resume.pdf","_blank");
             }
             
             function getHelpMenu(){

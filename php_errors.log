@@ -1,0 +1,49 @@
+[15-Apr-2016 05:14:26 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog/cache/compiled/files/4a54a6cba22f747b47ad66d12ed60358.yaml.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/File/CompiledFile.php(67): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledConfig.php(95): Grav\Common\File\CompiledYamlFile->content()
+#4 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(156): Grav\Common\Config\CompiledConfig->load in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 05:15:04 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Service/ConfigServiceProvider.php(64 in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 05:16:40 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Service/ConfigServiceProvider.php(64 in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 06:28:38 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog3/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Service/ConfigServiceProvider in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 06:28:40 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog3/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Service/ConfigServiceProvider in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 06:28:42 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog3/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog3/system/src/Grav/Common/Service/ConfigServiceProvider in /home/ubuntu/workspace/portfolio/blog3/vendor/rockettheme/toolbox/File/src/File.php on line 202
+[15-Apr-2016 06:47:22 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Opening file for writing failed on error fopen(/home/ubuntu/workspace/portfolio/blog/cache/compiled/blueprints/master-portfolio-nitishakalwadi.c9.io.php): failed to open stream: Permission denied' in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php:202
+Stack trace:
+#0 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php(316): RocketTheme\Toolbox\File\File->lock()
+#1 /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/PhpFile.php(31): RocketTheme\Toolbox\File\File->save(Array)
+#2 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(232): RocketTheme\Toolbox\File\PhpFile->save(Array)
+#3 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Config/CompiledBase.php(96): Grav\Common\Config\CompiledBase->saveCompiledFile('/home/ubuntu/wo...')
+#4 /home/ubuntu/workspace/portfolio/blog/system/src/Grav/Common/Service/ConfigServiceProvider.php(64 in /home/ubuntu/workspace/portfolio/blog/vendor/rockettheme/toolbox/File/src/File.php on line 202
